@@ -1,0 +1,47 @@
+<div *ngIf="!!pageContent" class="design-page">
+  <app-header [title]="'Style Photos'"></app-header>
+  <div class="design-content">
+    <div class="design-header">
+      <div class="list-styles">
+        <ng-container *ngFor="let style of pageContent.styles">
+          <div (click)="styleCodeSelected=style.code" [ngClass]="{'selected':styleCodeSelected===style.code}"
+               class="style-item">
+            <img class="style-icon" [src]="style.iconUrl">
+            <p class="style-name">{{style.name}}</p>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+    <div class="design-body"
+         [style.backgroundImage]="(images.length===0?('url(\''+pageContent.backgroundImageUrl+'\')'):'none') | safe:'style'"
+         [style.backgroundColor]="(images.length>0?'#ededed':'none')">
+
+      <input (change)="handleFileInput($event.target.files)" #fileUploadHidden type="file" style="display: none">
+      <div class="list-images">
+        <ng-container *ngFor="let image of images">
+          <div class="image-item">
+            <img class="image-background" [src]="imageFrame().frameUrl">
+            <div class="image-main-container" [ngClass]="{'padding':imageFrame().isPadding}">
+              <img class="image-main" [src]="image.path">
+            </div>
+          </div>
+        </ng-container>
+        <div class="image-item-add" (click)="fileUploadHidden.click();">
+          <div class="add-front">
+            <svg class="icon-add" viewBox="0 0 37.76 38.93">
+              <path fill="rgb(176,176,176)" class="plus-shape"
+                    d="M21.22,0V17.2H37.76v4.39H21.22V38.93H16.54V21.59H0V17.2H16.54V0Z"></path>
+            </svg>
+          </div>
+          <div class="add-back">
+            <img class="upload-icon" [src]="pageContent.upload.iconUrl">
+            <p class="upload-text">{{pageContent.upload.text}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="design-footer">
+      <button class="btn-submit">{{pageContent.btnSubmit.text}}</button>
+    </div>
+  </div>
+</div>

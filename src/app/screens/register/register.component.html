@@ -1,0 +1,16 @@
+<div *ngIf="!!pageContent" class="register-page">
+  <app-header></app-header>
+  <div class="register-content" [style.backgroundImage]="'url(\''+pageContent.backgroundImageUrl+'\')' | safe:'style'">
+    <div class="form-container">
+      <div class="register-form">
+        <h3 class="form-title">{{pageContent.title}}</h3>
+        <div class="form-body">
+          <input class="form-control" [placeholder]="pageContent.controls.inputFirstName.placeholder">
+          <input class="form-control" [placeholder]="pageContent.controls.inputLastName.placeholder">
+          <input class="form-control" [placeholder]="pageContent.controls.inputEmail.placeholder">
+        </div>
+        <button (click)="submit();" class="btn-submit">{{pageContent.btnSubmit.text}}</button>
+      </div>
+    </div>
+  </div>
+</div>
