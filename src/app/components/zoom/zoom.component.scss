@@ -1,0 +1,42 @@
+.pinch-zoom {
+  width: 284px;
+  height: 284px;
+}
+
+.pinch-zoom-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.image-background {
+  width: 324px;
+  height: 324px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.pinch-zoom-view {
+  width: 284px;
+  height: 284px;
+  margin-left: 16px;
+  margin-top: 12px;
+}
+
+.pinch-zoom-container {
+  width: 324px;
+  height: 324px;
+}
+
+.pinch-zoom-view.padding {
+  width: 213px;
+  height: 213px;
+  margin-left: 54px;
+  margin-top: 50px;
+}
+
+.pinch-zoom-view.padding .pinch-zoom {
+  width: 213px;
+  height: 213px;
+}
+

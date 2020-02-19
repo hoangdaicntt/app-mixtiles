@@ -478,7 +478,7 @@ html, body, app-root, app-register {
       height: calc(100% - 170px);
       background-repeat: no-repeat;
       background-size: cover;
-
+      overflow-x: auto;
 
       .list-images {
         height: 100%;
@@ -486,6 +486,8 @@ html, body, app-root, app-register {
         display: flex;
         justify-content: center;
         align-items: center;
+        margin: 0 auto;
+        padding: 0 32px;
 
         .image-item-add {
           position: relative;
@@ -495,8 +497,8 @@ html, body, app-root, app-register {
           cursor: pointer;
           flex-shrink: 0;
           border: 4px dashed #b0b0b0;
-          width: 230px;
-          height: 230px;
+          width: 243px;
+          height: 243px;
           border-radius: 14px;
           transition: box-shadow .3s, background-color .3s, transform .3s, border-color .3s, -webkit-transform .3s;
           -webkit-animation: fade-in .8s;
@@ -554,8 +556,8 @@ html, body, app-root, app-register {
           align-items: center;
           justify-content: center;
           display: flex;
-          width: 253px;
-          height: 253px;
+          width: 269px;
+          height: 269px;
           flex-shrink: 0;
           position: relative;
           cursor: pointer;
@@ -570,7 +572,6 @@ html, body, app-root, app-register {
             position: absolute;
             top: 0;
             width: 100%;
-            //background-color: #ededed;
           }
 
           .image-main-container {
@@ -585,10 +586,12 @@ html, body, app-root, app-register {
             -webkit-animation: fade-in .4s;
             animation: fade-in .4s;
             background-color: white;
+            position: relative;
 
             .image-main {
               height: 100%;
               width: auto;
+              position: absolute;
             }
           }
 
@@ -638,4 +641,152 @@ html, body, app-root, app-register {
   }
 }
 
+.popup-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  justify-content: center;
+  display: flex;
+  align-items: flex-end;
 
+  .menu-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background-color: #2929295e;
+  }
+
+  .menu-content {
+    z-index: 10;
+    width: calc(100% - 20px);
+    margin: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    max-width: 600px;
+    box-shadow: 0 8px 10px -5px rgba(0, 0, 0, .15), 0 16px 24px 2px rgba(0, 0, 0, .1), 0 6px 30px 5px rgba(0, 0, 0, .09);
+
+    .menus {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      .menu-item {
+        width: 100%;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 700;
+        padding: 13px 0;
+        border-top: 2px solid #e8e8e8;
+        cursor: pointer;
+
+        &:first-child {
+          border-top: none;
+        }
+
+        .menu-link {
+          display: block;
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+
+
+  }
+
+
+}
+
+
+.popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .popup-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #00000063;
+  }
+
+  .popup-content {
+    position: absolute;
+    background-color: white;
+    width: 600px;
+    border-radius: 6px;
+    overflow: hidden;
+
+    .popup-head {
+      width: 100%;
+      height: 50px;
+      display: flex;
+      flex-shrink: 0;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 12px;
+      box-sizing: border-box;
+      box-shadow: 0 0 10px rgba(0, 0, 0, .3);
+    }
+
+    .popup-close-icon {
+      color: #8c8c8c;
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 10px;
+    }
+
+    .popup-title {
+      text-align: center;
+      flex-grow: 1;
+      font-size: 19px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .popup-accept-button {
+      color: #ff0073;
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 10px;
+      border: none;
+      background: none;
+    }
+  }
+
+  .design-edit-content {
+    background-color: whitesmoke;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 0;
+
+    .design-image-title {
+      margin: 0;
+      text-transform: uppercase;
+      font-size: 14px;
+      color: #8c8c8c;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+      z-index: 2;
+      pointer-events: none;
+      margin-bottom: 32px;
+    }
+  }
+}

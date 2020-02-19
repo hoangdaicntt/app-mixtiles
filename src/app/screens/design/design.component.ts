@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {AppService} from '../../services/app.service';
 import {Router} from '@angular/router';
+import {trigger} from '@angular/animations';
+
 
 @Component({
   selector: 'app-design',
@@ -12,6 +14,18 @@ export class DesignComponent implements OnInit {
   styleCodeSelected = 'clean';
   fileToUpload: File = null;
   images = [];
+  editMenuPopup = {
+    show: false,
+    menus: [
+      {id: 'adjust', name: 'Adjust'},
+      {id: 'remove', name: 'Remove', color: '#e64d00'},
+      {id: 'cancel', name: 'Dismiss', color: '#8c8c8c', background: '#f2f2f2'}
+    ]
+  };
+  selectedImage = null;
+  popupEdit = {
+    show: false
+  };
 
   constructor(private appService: AppService) {
   }
@@ -27,7 +41,6 @@ export class DesignComponent implements OnInit {
 
   imageFrame() {
     const style = this.pageContent.styles.find(x => x.code === this.styleCodeSelected);
-    console.log(style);
     return !!style ? style : null;
   }
 
@@ -41,12 +54,46 @@ export class DesignComponent implements OnInit {
       id: '',
       name: '',
       path: '',
+      size: {width: 0, height: 0}
     };
-    this.images.push(image);
     this.appService.upload(this.fileToUpload).subscribe((result: any) => {
       if (result.success) {
         image.path = result.path;
+        image.size = result.size;
+        this.images.push(image);
       }
     });
+  }
+
+  editMenuAction(event: any) {
+    switch (event.action) {
+      case 'remove': {
+        this.images = this.images.filter(img => img !== this.selectedImage);
+        this.editMenuPopup.show = false;
+        break;
+      }
+      case 'adjust': {
+        this.popupEdit.show = true;
+        this.editMenuPopup.show = false;
+        break;
+      }
+      default: {
+        this.editMenuPopup.show = false;
+        break;
+      }
+    }
+  }
+
+  selectImage(image: any) {
+    this.selectedImage = image;
+    this.editMenuPopup.show = true;
+  }
+
+  getSelectedImage() {
+    return JSON.parse(JSON.stringify(this.selectedImage));
+  }
+
+  updateImageEdit(event: any) {
+    this.selectedImage.editData = event;
   }
 }

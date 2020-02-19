@@ -6,10 +6,14 @@ import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {HomeComponent} from './screens/home/home.component';
 import {SafePipe} from './pipes/safe.pipe';
-import { HeaderComponent } from './components/header/header.component';
-import { RegisterComponent } from './screens/register/register.component';
-import { DesignComponent } from './screens/design/design.component';
+import {HeaderComponent} from './components/header/header.component';
+import {RegisterComponent} from './screens/register/register.component';
+import {DesignComponent} from './screens/design/design.component';
 import {FormsModule} from '@angular/forms';
+import {MenuComponent} from './components/menu/menu.component';
+import {PopupComponent} from './components/popup/popup.component';
+import {ZoomComponent} from './components/zoom/zoom.component';
+import { ImageComponent } from './components/image/image.component';
 
 @NgModule({
   declarations: [
@@ -18,14 +22,18 @@ import {FormsModule} from '@angular/forms';
     SafePipe,
     HeaderComponent,
     RegisterComponent,
-    DesignComponent
+    DesignComponent,
+    MenuComponent,
+    PopupComponent,
+    ZoomComponent,
+    ImageComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        FormsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

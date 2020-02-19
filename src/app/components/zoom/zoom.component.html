@@ -1,0 +1,17 @@
+<app-popup (acceptEvent)="accept()" (cancelEvent)="cancel()">
+  <div class="design-edit-content">
+    <h3 class="design-image-title">Pinch and zoom</h3>
+    <div class="design-image-edit">
+      <div class="pinch-zoom-container">
+        <img class="image-background" [src]="imageFrame.frameUrl">
+        <div class="pinch-zoom-view" [ngClass]="{'padding':imageFrame.isPadding}">
+          <div class="pinch-zoom-view2">
+            <div #pinchZoomElement class="pinch-zoom">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</app-popup>

@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/app/modules/iv-viewer/lib/image-viewer.css",
               "src/styles.scss"
             ],
             "scripts": []

@@ -17,14 +17,9 @@
          [style.backgroundColor]="(images.length>0?'#ededed':'none')">
 
       <input (change)="handleFileInput($event.target.files)" #fileUploadHidden type="file" style="display: none">
-      <div class="list-images">
+      <div class="list-images" [style.width]="(images.length*279+251)+'px'">
         <ng-container *ngFor="let image of images">
-          <div class="image-item">
-            <img class="image-background" [src]="imageFrame().frameUrl">
-            <div class="image-main-container" [ngClass]="{'padding':imageFrame().isPadding}">
-              <img class="image-main" [src]="image.path">
-            </div>
-          </div>
+          <app-image [image]="image" [imageFrame]="imageFrame()" (selectEvent)="selectImage(image);"></app-image>
         </ng-container>
         <div class="image-item-add" (click)="fileUploadHidden.click();">
           <div class="add-front">
@@ -44,4 +39,13 @@
       <button class="btn-submit">{{pageContent.btnSubmit.text}}</button>
     </div>
   </div>
+
+  <app-menu *ngIf="editMenuPopup.show" (actionEvent)="editMenuAction($event)" [menus]="editMenuPopup.menus"></app-menu>
+
+  <app-zoom [image]="getSelectedImage()" [imageFrame]="imageFrame()"
+            (acceptEvent)="popupEdit.show=false;updateImageEdit($event)"
+            (cancelEvent)="popupEdit.show=false;" *ngIf="popupEdit.show"></app-zoom>
+
 </div>
+
+

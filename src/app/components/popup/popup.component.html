@@ -1,0 +1,17 @@
+<div class="popup-container">
+  <div class="popup-background"></div>
+  <div class="popup-content">
+    <div class="popup-head">
+      <div class="popup-close">
+        <img (click)="cancel()" class="popup-close-icon" src="https://www.mixtiles.com/images/icons/xIcon.svg">
+      </div>
+      <h3 class="popup-title">Chỉnh sửa</h3>
+      <div class="popup-accept">
+        <button (click)="accept()" class="popup-accept-button">Done</button>
+      </div>
+    </div>
+    <div class="popup-body">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

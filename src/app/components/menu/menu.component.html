@@ -1,0 +1,10 @@
+<div class="popup-menu" *ngIf="!!menus">
+  <div class="menu-background" (click)="action('cancel')"></div>
+  <div class="menu-content">
+    <ul class="menus">
+      <li [style.backgroundColor]="menu.background?menu.background:'#fff'" *ngFor="let menu of menus" class="menu-item">
+        <a [style.color]="menu.color?menu.color:'#000'" (click)="action(menu.id);" class="menu-link">{{menu.name}}</a>
+      </li>
+    </ul>
+  </div>
+</div>
