@@ -6,6 +6,16 @@
     <h3 class="title">{{title}}</h3>
   </div>
   <div class="header-right">
-    <img class="header-right-icon" [src]="pageContent.menuIconUrl">
+    <img (click)="showMenuHead=true;" class="header-right-icon" [src]="pageContent.menuIconUrl">
+    <div *ngIf="showMenuHead" class="head-menus">
+      <div (click)="showMenuHead=false" class="head-menus-bg"></div>
+      <div class="head-menus-content">
+        <ul class="menu-list">
+          <li *ngFor="let menu of menus" class="menu-item">
+            <a (click)="acceptMenu(menu);" class="menu-link">{{menu.name}}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>

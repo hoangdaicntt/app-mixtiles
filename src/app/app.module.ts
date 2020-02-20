@@ -14,6 +14,7 @@ import {MenuComponent} from './components/menu/menu.component';
 import {PopupComponent} from './components/popup/popup.component';
 import {ZoomComponent} from './components/zoom/zoom.component';
 import { ImageComponent } from './components/image/image.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ImageComponent } from './components/image/image.component';
     MenuComponent,
     PopupComponent,
     ZoomComponent,
-    ImageComponent
+    ImageComponent,
+    CheckoutComponent
   ],
   imports: [
     BrowserModule,

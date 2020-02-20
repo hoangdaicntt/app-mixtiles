@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-popup',
@@ -8,6 +8,8 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 export class PopupComponent implements OnInit {
   @Output('cancelEvent') cancelEvent = new EventEmitter();
   @Output('acceptEvent') acceptEvent = new EventEmitter();
+  @Input('acceptText') acceptText;
+  @Input('title') title;
 
   constructor() {
   }

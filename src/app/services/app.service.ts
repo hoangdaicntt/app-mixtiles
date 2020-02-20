@@ -178,7 +178,92 @@ export class AppService {
           upload: {
             iconUrl: 'https://www.mixtiles.com/images/uploader/uploadIcon.svg',
             text: 'Upload photos'
-          }
+          },
+          title: 'Style Photos',
+          zoomPopup: {
+            done: 'Done',
+            title: 'Adjust Image',
+            pinchAndZoom: 'Pinch and zoom'
+          },
+          editMenuPopup: {
+            show: false,
+            menus: [
+              {id: 'adjust', name: 'Adjust'},
+              {id: 'remove', name: 'Remove', color: '#e64d00'},
+              {id: 'cancel', name: 'Dismiss', color: '#8c8c8c', background: '#f2f2f2'}
+            ]
+          },
+          headerMenuPopup: {
+            menus: [
+              {id: 'questions', name: 'Frequent Questions'},
+              {id: 'chat', name: 'Talk to Us'},
+              {id: 'promotion', name: 'Add Promo Code'},
+              {id: 'giftcard', name: 'Gift Card'}
+            ]
+          },
+          checkoutPopup: {
+            show: false,
+            title: 'Checkout',
+            links: {
+              address: {
+                icon: '',
+                name: '',
+                fields: [
+                  {
+                    id: 'fullname',
+                    name: 'Full name',
+                    value: '',
+                    placeholder: '',
+                    type: 'text',
+                  }, {
+                    id: 'address',
+                    name: 'Address',
+                    value: '',
+                    placeholder: 'Stress, House, Number',
+                    type: 'text',
+                  }, {
+                    id: 'addressOther',
+                    name: 'Address 2',
+                    value: '',
+                    placeholder: '',
+                    type: 'text',
+                  }, {
+                    id: 'city',
+                    name: 'City',
+                    value: '',
+                    placeholder: '',
+                    type: 'text',
+                  }, {
+                    id: 'state',
+                    name: 'State',
+                    value: '',
+                    placeholder: '',
+                    type: 'text',
+                  }, {
+                    id: 'zipcode',
+                    name: 'Zip code',
+                    value: '',
+                    placeholder: '',
+                    type: 'text',
+                  }, {
+                    id: 'country',
+                    name: 'Country',
+                    value: '',
+                    placeholder: '',
+                    type: 'select',
+                    options: [
+                      {id: 'VN', name: 'Việt Nam'},
+                      {id: 'EN', name: 'Mexico'},
+                    ]
+                  },
+                ]
+              },
+              payment: {
+                icon: '',
+                name: ''
+              }
+            }
+          },
         }
       });
       subscriber.complete();

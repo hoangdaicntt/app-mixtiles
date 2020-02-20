@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import ImageViewer from '../../modules/iv-viewer';
+import {AppService} from '../../services/app.service';
 
 @Component({
   selector: 'app-zoom',
@@ -10,6 +11,7 @@ export class ZoomComponent implements OnInit, AfterViewInit {
   @ViewChild('pinchZoomElement', {static: true}) pinchZoomElement: ElementRef;
   @Input('imageFrame') imageFrame: any;
   @Input('image') image: any;
+  @Input('dataInit') pageContent: any;
   @Output('cancelEvent') cancelEvent = new EventEmitter();
   @Output('acceptEvent') acceptEvent = new EventEmitter();
   viewer: ImageViewer;

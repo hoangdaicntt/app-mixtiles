@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {AppService} from '../../services/app.service';
 import {Location} from '@angular/common';
 import {Router} from '@angular/router';
@@ -10,9 +10,12 @@ import {Router} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   @Input('title') title;
-  @Input('linkBack') linkBack;
+  @Input('linkBack') linkBack = null;
+  @Input('menus') menus;
+  @Output('acceptMenuEvent') acceptMenuEvent = new EventEmitter();
 
   pageContent: any;
+  showMenuHead = false;
 
   constructor(private appService: AppService,
               private location: Location,
@@ -29,10 +32,15 @@ export class HeaderComponent implements OnInit {
   }
 
   goBack() {
-    if (this.linkBack) {
+    if (this.linkBack !== null) {
       this.router.navigate([this.linkBack]);
     } else {
       this.location.back();
     }
+  }
+
+  acceptMenu(menu: any) {
+    this.acceptMenuEvent.emit(menu);
+    this.showMenuHead = false;
   }
 }

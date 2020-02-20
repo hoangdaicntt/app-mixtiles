@@ -341,6 +341,112 @@ html, body, app-root, app-register {
     width: 23px;
     cursor: pointer;
   }
+
+  .head-menus {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+
+    .head-menus-bg {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      top: 0;
+      height: 100%;
+      background-color: rgba(50, 50, 50, 0.2);
+    }
+
+    .head-menus-content {
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
+      background-color: #fff;
+      border-radius: 4px;
+      outline: none;
+      position: absolute;
+      min-width: 16px;
+      max-width: calc(100% - 32px);
+      min-height: 16px;
+      max-height: calc(100% - 96px);
+      box-shadow: 0 3px 14px 0 rgba(0, 0, 0, .21);
+      overflow: visible;
+      top: 53px;
+      left: unset;
+      right: 0;
+      opacity: 1;
+      transform: scale(1, 1) translateZ(0px);
+      transition: opacity 281ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, transform 187ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+      transform-origin: 237px -15px;
+
+      &:before {
+        content: '';
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid white;
+        position: absolute;
+        top: -10px;
+        right: 14px;
+      }
+
+      .menu-list {
+        -webkit-font-smoothing: antialiased;
+        -webkit-tap-highlight-color: transparent;
+        margin: 0;
+        position: relative;
+        list-style: none;
+        padding: 8px 0;
+        width: 100%;
+
+        .menu-item {
+          -webkit-font-smoothing: antialiased;
+          list-style: none;
+          border: 0;
+          margin: 0;
+          cursor: pointer;
+          outline: none;
+          user-select: none;
+          border-radius: 0;
+          vertical-align: middle;
+          background-color: transparent;
+          -webkit-appearance: none;
+          -webkit-tap-highlight-color: transparent;
+          display: flex;
+          position: relative;
+          text-align: left;
+          align-items: center;
+          padding-top: 11px;
+          padding-bottom: 11px;
+          justify-content: flex-start;
+          text-decoration: none;
+          color: rgba(0, 0, 0, 0.87);
+          width: auto;
+          height: 24px;
+          overflow: hidden;
+          font-size: 1rem;
+          box-sizing: content-box;
+          font-weight: 400;
+          line-height: 1.5em;
+          white-space: nowrap;
+          padding-left: 16px;
+          text-overflow: ellipsis;
+          padding-right: 16px;
+          min-width: 237px;
+        }
+
+        .menu-link {
+          text-decoration: none;
+          display: block;
+          width: 100%;
+        }
+      }
+    }
+  }
+
+
 }
 
 .register-page {
@@ -703,6 +809,136 @@ html, body, app-root, app-register {
 
 }
 
+.checkout-component {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.checkout-component-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(50, 50, 50, 0.2);
+}
+
+.checkout-component-content {
+  font-family: ProximaNova, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+  background-color: #fff;
+  box-shadow: 0px 8px 10px -5px rgba(0, 0, 0, 0.2), 0px 16px 24px 2px rgba(0, 0, 0, 0.14), 0px 6px 30px 5px rgba(0, 0, 0, 0.12);
+  top: 0;
+  flex: 1 0 auto;
+  height: 100%;
+  display: flex;
+  z-index: 1200;
+  outline: none;
+  position: fixed;
+  flex-direction: column;
+  left: auto;
+  right: 0;
+  overflow: hidden;
+  border-radius: 0;
+  transform: translate(0px, 0px);
+  transition: transform 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  width: 420px;
+  padding: 25px;
+  box-sizing: border-box;
+
+  .checkout-title {
+    font-family: ProximaNova, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    font-weight: 700;
+    font-size: 30px;
+    align-items: center;
+    padding: 35px 0 18px;
+    display: flex;
+    margin: 0;
+  }
+
+  .link-item {
+    font-family: ProximaNova, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    font-weight: 700;
+    cursor: pointer;
+    color: #ff0073;
+  }
+
+  .list-link {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .link-icon {
+    width: 17px;
+    margin-right: 24px;
+  }
+
+  .order-summary-container {
+    padding-top: 17px;
+
+    .order-summary {
+      font-family: ProximaNova, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
+      flex: 1 1;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      margin-bottom: 6px;
+      color: #333;
+    }
+  }
+
+
+  .bottom-button-container {
+    font-family: ProximaNova, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    padding: 16px 0 0;
+
+    .bottom-button {
+      position: relative;
+      background-color: #ff0072;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 50px;
+      border-radius: 10px;
+      font-size: 20px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: box-shadow .3s, background-color .3s;
+      max-width: 400px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+
+
+}
+
 
 .popup-container {
   position: fixed;
@@ -789,4 +1025,64 @@ html, body, app-root, app-register {
       margin-bottom: 32px;
     }
   }
+
+  .forms-address {
+    font-family: ProximaNova, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -webkit-tap-highlight-color: transparent;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px;
+    border-radius: 5px;
+    margin: 30px 30px 30px;
+    box-shadow: none;
+    background: #f7f7f7;
+
+    .form-item {
+      font-family: ProximaNova, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
+      border-bottom: 1px solid #ededed;
+      display: flex;
+      padding: 0;
+
+      .form-item-label {
+        font-family: ProximaNova, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -webkit-tap-highlight-color: transparent;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 140px;
+        font-size: 12px;
+        color: #333;
+        text-transform: uppercase;
+        font-weight: 700;
+        margin-bottom: 0;
+        padding: 5px 0;
+        margin-right: 10px;
+      }
+
+      .form-item-input {
+        -webkit-font-smoothing: antialiased;
+        -webkit-tap-highlight-color: transparent;
+        font-family: ProximaNova, sans-serif;
+        border: none;
+        transition: background-color .2s;
+        box-sizing: border-box;
+        background: #f7f7f7;
+        display: inline;
+        width: 100%;
+        height: auto;
+        padding: 14px 0;
+        font-weight: 300;
+        font-size: 16px;
+        align-items: center;
+        border-bottom: 0;
+        outline: none;
+      }
+    }
+  }
+
 }

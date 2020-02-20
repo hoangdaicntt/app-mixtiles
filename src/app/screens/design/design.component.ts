@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {AppService} from '../../services/app.service';
 import {Router} from '@angular/router';
 import {trigger} from '@angular/animations';
@@ -14,14 +14,10 @@ export class DesignComponent implements OnInit {
   styleCodeSelected = 'clean';
   fileToUpload: File = null;
   images = [];
-  editMenuPopup = {
-    show: false,
-    menus: [
-      {id: 'adjust', name: 'Adjust'},
-      {id: 'remove', name: 'Remove', color: '#e64d00'},
-      {id: 'cancel', name: 'Dismiss', color: '#8c8c8c', background: '#f2f2f2'}
-    ]
-  };
+  editMenuPopup;
+  headerMenuPopup;
+  checkoutPopup;
+
   selectedImage = null;
   popupEdit = {
     show: false
@@ -37,6 +33,9 @@ export class DesignComponent implements OnInit {
   async loadInit() {
     const result: any = await this.appService.init().toPromise();
     this.pageContent = result.design;
+    this.editMenuPopup = this.pageContent.editMenuPopup;
+    this.headerMenuPopup = this.pageContent.headerMenuPopup;
+    this.checkoutPopup = this.pageContent.checkoutPopup;
   }
 
   imageFrame() {
@@ -56,11 +55,11 @@ export class DesignComponent implements OnInit {
       path: '',
       size: {width: 0, height: 0}
     };
+    this.images.push(image);
     this.appService.upload(this.fileToUpload).subscribe((result: any) => {
       if (result.success) {
         image.path = result.path;
         image.size = result.size;
-        this.images.push(image);
       }
     });
   }
@@ -95,5 +94,13 @@ export class DesignComponent implements OnInit {
 
   updateImageEdit(event: any) {
     this.selectedImage.editData = event;
+  }
+
+  openCheckout() {
+    this.checkoutPopup.show = true;
+  }
+
+  checkoutAction(event: any) {
+    this.checkoutPopup.show = false;
   }
 }

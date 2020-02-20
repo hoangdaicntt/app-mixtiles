@@ -1,5 +1,5 @@
 <div *ngIf="!!pageContent" class="design-page">
-  <app-header [title]="'Style Photos'"></app-header>
+  <app-header [linkBack]="''" [menus]="headerMenuPopup.menus" [title]="pageContent.title"></app-header>
   <div class="design-content">
     <div class="design-header">
       <div class="list-styles">
@@ -16,7 +16,8 @@
          [style.backgroundImage]="(images.length===0?('url(\''+pageContent.backgroundImageUrl+'\')'):'none') | safe:'style'"
          [style.backgroundColor]="(images.length>0?'#ededed':'none')">
 
-      <input (change)="handleFileInput($event.target.files)" #fileUploadHidden type="file" style="display: none">
+      <input (change)="handleFileInput($event.target.files); fileUploadHidden.value = '';" #fileUploadHidden type="file"
+             style="display: none">
       <div class="list-images" [style.width]="(images.length*279+251)+'px'">
         <ng-container *ngFor="let image of images">
           <app-image [image]="image" [imageFrame]="imageFrame()" (selectEvent)="selectImage(image);"></app-image>
@@ -36,15 +37,16 @@
       </div>
     </div>
     <div class="design-footer">
-      <button class="btn-submit">{{pageContent.btnSubmit.text}}</button>
+      <button (click)="openCheckout();" class="btn-submit">{{pageContent.btnSubmit.text}}</button>
     </div>
   </div>
 
   <app-menu *ngIf="editMenuPopup.show" (actionEvent)="editMenuAction($event)" [menus]="editMenuPopup.menus"></app-menu>
 
-  <app-zoom [image]="getSelectedImage()" [imageFrame]="imageFrame()"
+  <app-zoom [dataInit]="pageContent.zoomPopup" [image]="getSelectedImage()" [imageFrame]="imageFrame()"
             (acceptEvent)="popupEdit.show=false;updateImageEdit($event)"
             (cancelEvent)="popupEdit.show=false;" *ngIf="popupEdit.show"></app-zoom>
+  <app-checkout (checkoutEvent)="checkoutAction($event)" [dataInit]="pageContent.checkoutPopup" *ngIf="checkoutPopup.show"></app-checkout>
 
 </div>
 

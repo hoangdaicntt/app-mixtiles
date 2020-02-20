@@ -5,9 +5,9 @@
       <div class="popup-close">
         <img (click)="cancel()" class="popup-close-icon" src="https://www.mixtiles.com/images/icons/xIcon.svg">
       </div>
-      <h3 class="popup-title">Chỉnh sửa</h3>
+      <h3 class="popup-title">{{title}}</h3>
       <div class="popup-accept">
-        <button (click)="accept()" class="popup-accept-button">Done</button>
+        <button (click)="accept()" class="popup-accept-button">{{acceptText}}</button>
       </div>
     </div>
     <div class="popup-body">
