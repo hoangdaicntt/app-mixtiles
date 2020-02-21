@@ -138,7 +138,25 @@ export class AppService {
         },
         header: {
           backIconUrl: 'https://www.mixtiles.com/images/icons/backButton.svg',
-          menuIconUrl: 'https://www.mixtiles.com/images/icons/menuIcon.svg'
+          menuIconUrl: 'https://www.mixtiles.com/images/icons/menuIcon.svg',
+          webMenu: {
+            logo: 'https://www.mixtiles.com//images/logo.png',
+            menus: [
+              {
+                link: 'https://go.onelink.me/app/88a607f8',
+                name: 'iPhone'
+              }, {
+                link: 'https://go.onelink.me/app/88a607f8',
+                name: 'Android'
+              }, {
+                link: '/news',
+                name: 'NEWS'
+              }, {
+                link: 'mailto:hi@mixtiles.com',
+                name: 'CONTACT'
+              },
+            ]
+          }
         },
         // Design page
         design: {
@@ -262,7 +280,7 @@ export class AppService {
             {id: 'questions', name: 'Frequent Questions'},
             {id: 'chat', name: 'Talk to Us'},
             {id: 'promotion', name: 'Add Promo Code'},
-            {id: 'giftcard', name: 'Gift Card'}
+            {id: 'gift', name: 'Gift Card'}
           ],
           questions: {
             title: 'Frequent Questions',
@@ -283,6 +301,40 @@ export class AppService {
             inputPlaceholder: 'Input code...'
           }
         },
+        gift: {
+          titleCard: 'Mixtiles Gift Card',
+          amount: ' Tiles',
+          labelInput: 'Who is the gift for:',
+          placeholderInput: 'Email',
+          imageCards: 'https://www.mixtiles.com/images/giftCard/card-en.png',
+          shipIconUrl: 'https://www.mixtiles.com/images/giftCard/checkIcon.svg', shipText: 'Shipping Included',
+          submitButton: 'Buy', howItWork: 'How does it work?',
+          contactUs: 'Any questions?<span class="contact-us-button">Contact us</span>',
+          options: [
+            {
+              id: 'gift3',
+              number: 3,
+              title: '3 Tiles',
+              price: 'US$33',
+              selected: true,
+            }, {
+              id: 'gift6',
+              number: 6,
+              title: '6 Tiles',
+              price: 'US$66'
+            }, {
+              id: 'gift8',
+              number: 8,
+              title: '8 Tiles',
+              price: 'US$88'
+            }, {
+              id: 'gift12',
+              number: 12,
+              title: '12 Tiles',
+              price: 'US$132'
+            },
+          ]
+        }
       });
       subscriber.complete();
     });

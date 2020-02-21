@@ -6,7 +6,7 @@ import {environment} from '../../../environments/environment';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css', '../../../../node_modules/swiper/css/swiper.css']
+  styleUrls: ['./home.component.scss', '../../../../node_modules/swiper/css/swiper.css']
 })
 export class HomeComponent implements OnInit {
   pageContent;
@@ -17,8 +17,6 @@ export class HomeComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.currentLanguage = environment.language;
-
     await this.loadInit();
     this.initSlider();
   }

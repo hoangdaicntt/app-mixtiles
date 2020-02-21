@@ -1,23 +1,12 @@
-/* tslint:disable:max-line-length */
 import {Component, OnInit} from '@angular/core';
-import {AppService} from '../../../services/app.service';
-import {SeoService} from '../../../services/seo.service';
 
 @Component({
-  selector: 'app-news-detail',
-  templateUrl: './news-detail.component.html',
-  styleUrls: ['./news-detail.component.scss']
+  selector: 'app-page',
+  templateUrl: './page.component.html',
+  styleUrls: ['./page.component.scss']
 })
-export class NewsDetailComponent implements OnInit {
+export class PageComponent implements OnInit {
   pageContent = {
-    seo: {
-      title: 'News Detail',
-      metaTags: [
-        [{name: 'name', value: 'keywords'}, {name: 'content', value: 'Từ khóa'}],
-        [{name: 'name', value: 'description'}, {name: 'content', value: 'Mô tả ở đây'}]
-      ]
-    },
-    banner: 'https://cdn.cnn.com/cnnnext/dam/assets/191225170219-benjamin-netanyahu-file-super-169.jpg',
     title: 'As election looms, Netanyahu announces new construction in East Jerusalem',
     content: '<p><cite>Jerusalem (CNN)</cite>With eleven days to go until Israel&#39;s election, Prime Minister Benjamin Netanyahu has announced plans to build thousands of new homes in a part of Jerusalem that the international community holds as the capital of a future Palestinian state.</p>\n' +
       '<p>The announcement immediately drew verbal fire from Palestinians, who called the planned construction &quot;land theft&quot; and a &quot;violation of international law.&quot; The international community considers Israeli neighborhoods in East Jerusalem as settlements in violation of international law.</p>\n' +
@@ -38,12 +27,10 @@ export class NewsDetailComponent implements OnInit {
       '<p>With less than two weeks to go until the elections, Netanyahu&#39;s latest announcement is an attempt to woo right-wing voters. Election polls have repeatedly shown Netanyahu&#39;s Likud party trailing the rival Blue and White party by one or two seats. This marks Israel&#39;s third election in less than 12 months, as the country remains mired in political deadlock that neither Netanyahu nor Blue and White leader Benny Gantz have been able to break.</p>\n'
   };
 
-  constructor(private appService: AppService,
-              private seoService: SeoService) {
+  constructor() {
   }
 
   ngOnInit() {
-    this.seoService.init(this.pageContent.seo);
   }
 
 }

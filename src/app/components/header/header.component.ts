@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
   @Input('isHeaderWeb') isHeaderWeb = false;
   @Output('acceptMenuEvent') acceptMenuEvent = new EventEmitter();
 
-  pageContent: any;
+  pageContent;
   showMenuHead = false;
   showQuestionPopup = false;
   showPromotionPopup = false;
@@ -57,6 +57,10 @@ export class HeaderComponent implements OnInit {
       }
       case 'promotion': {
         this.showPromotionPopup = true;
+        break;
+      }
+      case 'gift': {
+        this.router.navigate(['gift']);
         break;
       }
     }

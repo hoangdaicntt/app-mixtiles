@@ -1,1 +1,62 @@
-<p>gift works!</p>
+<app-header [isHeaderWeb]="true"></app-header>
+
+<div class="GiftCardPage">
+  <div class="left-side">
+    <div class="gift-card-title-mobile">{{pageContent.titleCard}}</div>
+    <div class="GiftCard">
+      <img [src]="pageContent.imageCards">
+      <div class="tiles-amount">{{getSelectedOption().number}}{{pageContent.amount}}</div>
+      <div class="shine"></div>
+    </div>
+    <div class="by-email">{{pageContent.titleCard}}</div>
+  </div>
+  <div class="right-side">
+    <div class="gift-card-title-desktop">{{pageContent.titleCard}}</div>
+    <div class="email-input-label">{{pageContent.labelInput}}</div>
+    <form>
+      <div class="">
+        <input class="FormInput email-input newStyle" type="email" [placeholder]="pageContent.placeholderInput"
+               maxlength="80"
+               value=""></div>
+    </form>
+    <div class="gift-amount-selector-container">
+      <div class="gift-amount-selector">
+        <ng-container *ngFor="let item of pageContent.options">
+          <div (click)="selectOption(item);" [ngClass]="{'selected':item.selected}" class="gift-amount-item">
+            <div class="top">{{item.title}}</div>
+            <div class="bottom">{{item.price}}</div>
+          </div>
+        </ng-container>
+      </div>
+      <div class="shipping-included">
+        <img [src]="pageContent.shipIconUrl">
+        {{pageContent.shipText}}
+      </div>
+    </div>
+    <div class="checkout-button">
+      <div class="submit-button">{{pageContent.submitButton}}</div>
+    </div>
+    <div class="how-it-works">
+      <div class="title">{{pageContent.howItWork}}</div>
+      <div class="how-work-item">
+        <div class="icon">
+          <img src="https://www.mixtiles.com/images/giftCard/tagIcon.svg"></div>
+        1. Buy the digital gift card
+      </div>
+      <div class="how-work-item">
+        <div class="icon">
+          <img src="https://www.mixtiles.com/images/giftCard/envelopeIcon.svg"></div>
+        2. We send it over email to your friend or family member
+      </div>
+      <div class="how-work-item">
+        <div class="icon">
+          <img src="https://www.mixtiles.com/images/giftCard/giftIcon.svg"></div>
+        3. They order Mixtiles and apply the gift code at checkout!
+      </div>
+    </div>
+    <div class="contact-us" [innerHTML]="pageContent.contactUs"></div>
+  </div>
+</div>
+
+
+<app-footer></app-footer>

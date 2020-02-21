@@ -1,0 +1,113 @@
+.news-page {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+img.team-photo {
+
+  max-width: 774.5px;
+  width: 100%;
+  max-height: 500px;
+}
+
+.news-departments {
+
+  width: 100%;
+  max-width: 734px;
+}
+
+.department-name {
+
+  color: #24252b;
+  font-weight: 700;
+  margin-top: 55px;
+  font-size: 27px;
+}
+
+.newsPosition {
+
+  display: flex;
+  align-items: center;
+  /* height: 109px; */
+  border-bottom: 2px solid #ededed;
+  padding: 16px 0;
+}
+
+.newsPosition .content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.newsPosition .content .news-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.news-title {
+
+  color: #2272c9;
+  font-weight: 600;
+  cursor: pointer;
+  line-height: 21px;
+  font-size: 18px;
+}
+
+.news-location {
+  color: #7a7c85;
+  font-weight: 400;
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+.PinkButton {
+  background-color: #f07;
+  border-radius: 5px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color .2s, box-shadow .3s;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-left: 10px;
+  width: 121px;
+  height: 40px;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+
+.news-thumnail {
+  width: 165px;
+  margin-right: 16px;
+}
+
+a.page-next {
+  display: flex;
+  width: 250px;
+  -webkit-box-direction: normal;
+  background-color: #f07;
+  border-radius: 5px;
+  color: #fff;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s, box-shadow 0.3s;
+  font-weight: 700;
+  flex-shrink: 0;
+  height: 40px;
+  font-size: 18px;
+  margin: 0 auto;
+  margin-top: 24px;
+  text-decoration: none;
+}

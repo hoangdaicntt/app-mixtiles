@@ -21,12 +21,20 @@
 </div>
 
 <div *ngIf="!!pageContent && !!isHeaderWeb">
-
+  <div class="top-menu">
+    <a href="/">
+      <img [src]="pageContent.webMenu.logo"></a>
+    <div class="menu-items">
+      <div class="menu-item" *ngFor="let menu of pageContent.webMenu.menus">
+        <a [href]="menu.link" target="_self">{{menu.name}}</a>
+      </div>
+    </div>
+  </div>
 </div>
 <!--Frequent Questions-->
 <app-popup [acceptText]="false" [title]="menus.questions.title" (cancelEvent)="showQuestionPopup=false;"
            *ngIf="!!menus && showQuestionPopup">
-  <div class="questions">
+  <div class="questions popup-body">
     <div *ngFor="let item of menus.questions.contents" class="question-item">
       <h3 class="question-title">{{item.question}}</h3>
       <p class="question-content">{{item.answer}}</p>
@@ -39,7 +47,7 @@
            (acceptEvent)="showPromotionPopup=false;"
            (cancelEvent)="showPromotionPopup=false;"
            *ngIf="!!menus && showPromotionPopup">
-  <div class="promotion-add">
+  <div class="promotion-add popup-body">
     <label class="pro-label">{{menus.promotion.label}}</label>
     <input class="pro-input" [placeholder]="menus.promotion.inputPlaceholder" [(ngModel)]="promotionCode">
   </div>

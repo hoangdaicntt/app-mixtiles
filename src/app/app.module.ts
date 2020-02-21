@@ -18,6 +18,8 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { GiftComponent } from './screens/gift/gift.component';
 import { NewsListComponent } from './screens/news/news-list/news-list.component';
 import { NewsDetailComponent } from './screens/news/news-detail/news-detail.component';
+import { PageComponent } from './screens/page/page.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { NewsDetailComponent } from './screens/news/news-detail/news-detail.comp
     CheckoutComponent,
     GiftComponent,
     NewsListComponent,
-    NewsDetailComponent
+    NewsDetailComponent,
+    PageComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

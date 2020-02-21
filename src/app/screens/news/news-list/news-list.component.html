@@ -1,1 +1,23 @@
-<p>news-list works!</p>
+<app-header [isHeaderWeb]="true"></app-header>
+
+<div class="news-page">
+  <img class="team-photo" [src]="pageContent.banner">
+  <div class="news-departments">
+    <div class="newsDepartment">
+      <div class="department-name">{{pageContent.title}}</div>
+      <div *ngFor="let news of pageContent.news" class="newsPosition">
+        <div class="content">
+          <img class="news-thumnail" [src]="news.image">
+          <div class="news-info">
+            <div class="news-title">{{news.title}}</div>
+            <div class="news-location">{{news.description}}</div>
+          </div>
+          <a [href]="'/news-detail/'+news.slug" class="PinkButton">{{pageContent.linkDetailTitle}}</a>
+        </div>
+      </div>
+      <a class="page-next" [href]="'/news/?page='+pageContent.nextPage">{{pageContent.nextText}}</a>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

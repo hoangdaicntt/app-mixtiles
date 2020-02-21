@@ -1,3 +1,25 @@
+.design-edit-content {
+  background-color: whitesmoke;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 24px 0;
+
+  .design-image-title {
+    margin: 0;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: #8c8c8c;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+    z-index: 2;
+    pointer-events: none;
+    margin-bottom: 32px;
+  }
+}
+
 .pinch-zoom {
   width: 284px;
   height: 284px;
