@@ -34,7 +34,7 @@ export class DesignComponent implements OnInit {
     const result: any = await this.appService.init().toPromise();
     this.pageContent = result.design;
     this.editMenuPopup = this.pageContent.editMenuPopup;
-    this.headerMenuPopup = this.pageContent.headerMenuPopup;
+    this.headerMenuPopup = result.headerMenuPopup;
     this.checkoutPopup = this.pageContent.checkoutPopup;
   }
 

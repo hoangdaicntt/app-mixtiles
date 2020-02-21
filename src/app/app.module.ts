@@ -15,6 +15,9 @@ import {PopupComponent} from './components/popup/popup.component';
 import {ZoomComponent} from './components/zoom/zoom.component';
 import { ImageComponent } from './components/image/image.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { GiftComponent } from './screens/gift/gift.component';
+import { NewsListComponent } from './screens/news/news-list/news-list.component';
+import { NewsDetailComponent } from './screens/news/news-detail/news-detail.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     PopupComponent,
     ZoomComponent,
     ImageComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    GiftComponent,
+    NewsListComponent,
+    NewsDetailComponent
   ],
   imports: [
     BrowserModule,

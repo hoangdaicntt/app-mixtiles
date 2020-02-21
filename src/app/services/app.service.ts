@@ -193,14 +193,6 @@ export class AppService {
               {id: 'cancel', name: 'Dismiss', color: '#8c8c8c', background: '#f2f2f2'}
             ]
           },
-          headerMenuPopup: {
-            menus: [
-              {id: 'questions', name: 'Frequent Questions'},
-              {id: 'chat', name: 'Talk to Us'},
-              {id: 'promotion', name: 'Add Promo Code'},
-              {id: 'giftcard', name: 'Gift Card'}
-            ]
-          },
           checkoutPopup: {
             show: false,
             title: 'Checkout',
@@ -264,7 +256,33 @@ export class AppService {
               }
             }
           },
-        }
+        },
+        headerMenuPopup: {
+          menus: [
+            {id: 'questions', name: 'Frequent Questions'},
+            {id: 'chat', name: 'Talk to Us'},
+            {id: 'promotion', name: 'Add Promo Code'},
+            {id: 'giftcard', name: 'Gift Card'}
+          ],
+          questions: {
+            title: 'Frequent Questions',
+            contents: [
+              {
+                question: 'How much do Mixtiles cost?',
+                answer: 'Each tile is US$11. So for example, an order of 6 tiles would be US$66. Prices are in USD.'
+              }, {
+                question: 'How big are the tiles?',
+                answer: 'They’re about 20 by 20 cm and 2 cm thick (8 by 8 inches and just under an inch thick).'
+              }
+            ]
+          },
+          promotion: {
+            done: 'Done',
+            title: 'Add Promo Code',
+            label: 'Your code',
+            inputPlaceholder: 'Input code...'
+          }
+        },
       });
       subscriber.complete();
     });

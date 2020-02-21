@@ -7,11 +7,14 @@
       </div>
       <h3 class="popup-title">{{title}}</h3>
       <div class="popup-accept">
-        <button (click)="accept()" class="popup-accept-button">{{acceptText}}</button>
+        <button *ngIf="!!acceptText" (click)="accept()" class="popup-accept-button">{{acceptText}}</button>
       </div>
     </div>
     <div class="popup-body">
-      <ng-content></ng-content>
+      <ng-content select=".popup-body"></ng-content>
+    </div>
+    <div class="popup-footer">
+      <ng-content select=".popup-footer"></ng-content>
     </div>
   </div>
 </div>

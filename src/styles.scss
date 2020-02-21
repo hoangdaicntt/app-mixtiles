@@ -1027,7 +1027,6 @@ html, body, app-root, app-register {
   }
 
   .forms-address {
-    font-family: ProximaNova, sans-serif;
     -webkit-font-smoothing: antialiased;
     -webkit-tap-highlight-color: transparent;
     flex-shrink: 0;
@@ -1040,7 +1039,6 @@ html, body, app-root, app-register {
     background: #f7f7f7;
 
     .form-item {
-      font-family: ProximaNova, sans-serif;
       -webkit-font-smoothing: antialiased;
       -webkit-tap-highlight-color: transparent;
       border-bottom: 1px solid #ededed;
@@ -1048,7 +1046,6 @@ html, body, app-root, app-register {
       padding: 0;
 
       .form-item-label {
-        font-family: ProximaNova, sans-serif;
         -webkit-font-smoothing: antialiased;
         -webkit-tap-highlight-color: transparent;
         display: flex;
@@ -1067,7 +1064,6 @@ html, body, app-root, app-register {
       .form-item-input {
         -webkit-font-smoothing: antialiased;
         -webkit-tap-highlight-color: transparent;
-        font-family: ProximaNova, sans-serif;
         border: none;
         transition: background-color .2s;
         box-sizing: border-box;
@@ -1081,8 +1077,67 @@ html, body, app-root, app-register {
         align-items: center;
         border-bottom: 0;
         outline: none;
+        -webkit-box-shadow: 0 0 0 1000px #f7f7f7 inset;
       }
     }
   }
+
+  .questions {
+    padding-top: 25px;
+    padding-left: 30px;
+    padding-right: 30px;
+    overflow-y: auto;
+
+    .question-title {
+      color: #ff0073;
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0;
+      margin-bottom: 5px;
+    }
+
+    .question-content {
+      color: #333;
+      margin: 0;
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 25px;
+    }
+  }
+
+  .promotion-add {
+    /* min-width: 400px; */
+    min-height: 110px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 25px;
+
+    .pro-label {
+      font-size: 12px;
+      line-height: 20px;
+      letter-spacing: 1.6px;
+      font-weight: 700;
+      margin-left: 10px;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      display: block;
+    }
+
+    .pro-input {
+      background-color: #f7f7f7;
+      border: none;
+      border-bottom: 2px solid #fff;
+      height: 45px;
+      padding-left: 10px;
+      font-size: 20px;
+      font-weight: 600;
+      transition: background-color .2s;
+      width: 100%;
+      box-sizing: border-box;
+    }
+  }
+
+
+
 
 }

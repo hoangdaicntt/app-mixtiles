@@ -12,10 +12,14 @@ export class HeaderComponent implements OnInit {
   @Input('title') title;
   @Input('linkBack') linkBack = null;
   @Input('menus') menus;
+  @Input('isHeaderWeb') isHeaderWeb = false;
   @Output('acceptMenuEvent') acceptMenuEvent = new EventEmitter();
 
   pageContent: any;
   showMenuHead = false;
+  showQuestionPopup = false;
+  showPromotionPopup = false;
+  promotionCode: string;
 
   constructor(private appService: AppService,
               private location: Location,
@@ -40,7 +44,21 @@ export class HeaderComponent implements OnInit {
   }
 
   acceptMenu(menu: any) {
+    this.actionMenu(menu);
     this.acceptMenuEvent.emit(menu);
     this.showMenuHead = false;
+  }
+
+  actionMenu(menu) {
+    switch (menu.id) {
+      case 'questions': {
+        this.showQuestionPopup = true;
+        break;
+      }
+      case 'promotion': {
+        this.showPromotionPopup = true;
+        break;
+      }
+    }
   }
 }

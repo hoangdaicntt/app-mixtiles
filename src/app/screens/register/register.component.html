@@ -1,5 +1,5 @@
 <div *ngIf="!!pageContent" class="register-page">
-  <app-header></app-header>
+  <app-header [menus]="headerMenuPopup"></app-header>
   <div class="register-content" [style.backgroundImage]="'url(\''+pageContent.backgroundImageUrl+'\')' | safe:'style'">
     <div class="form-container">
       <div class="register-form">

@@ -39,7 +39,7 @@
            (cancelEvent)="addressPopupShow=false;" *ngIf="addressPopupShow"
            [title]="'Add address'"
            [acceptText]="'Done'">
-  <div class="forms-address">
+  <div class="forms-address popup-body">
     <div *ngFor="let field of pageContent.links.address.fields" class="form-item">
       <label class="form-item-label">{{field.name}}</label>
       <input class="form-item-input" [(ngModel)]="field.value" [placeholder]="field.placeholder">
