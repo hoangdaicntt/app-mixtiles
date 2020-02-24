@@ -1,10 +1,18 @@
 <ng-container *ngIf="!!pageContent">
   <div class="section-menu-bottom-desktop">
     <ul class="menu-list">
-      <li class="menu-item" *ngFor="let menu of pageContent.sectionMenuBottom.desktop">
+      <li [ngClass]="{'mobile-hide':!menu.showMobile}" class="menu-item"
+          *ngFor="let menu of pageContent.sectionMenuBottom.menus">
         <a [routerLink]="[menu.link]" class="menu-link">{{menu.name}}</a>
       </li>
     </ul>
+    <ul class="menu-list-mini mobile-show">
+      <li [ngClass]="{'mobile-show':!menu.showMobile}" class="menu-item-mini"
+          *ngFor="let menu of pageContent.sectionMenuBottom.menus">
+        <a [routerLink]="[menu.link]" class="menu-link-mini">{{menu.name}}</a>
+      </li>
+    </ul>
+    <p class="copyright mobile-show">{{pageContent.sectionMenuBottom.copyright}}</p>
   </div>
 
   <div class="section-language">

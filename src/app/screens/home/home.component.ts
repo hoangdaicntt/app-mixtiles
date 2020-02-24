@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
   pageContent;
   private swiper: Swiper;
   currentLanguage = null;
+  window = window;
 
   constructor(private appService: AppService) {
   }

@@ -97,6 +97,7 @@ export class DesignComponent implements OnInit {
   }
 
   openCheckout() {
+    console.log(this.images);
     this.checkoutPopup.show = true;
   }
 

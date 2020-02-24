@@ -81,11 +81,12 @@ export class AppService {
             description: 'You\'ll love our product or we\'ll return your money'
           },
           sectionMenuBottom: {
-            desktop: [
+            menus: [
               {
                 isRouter: true,
                 link: '/news',
-                name: 'News'
+                name: 'News',
+                showMobile: true,
               }, {
                 isRouter: true,
                 link: '/terms-of-use',
@@ -101,10 +102,11 @@ export class AppService {
               }, {
                 isRouter: false,
                 link: 'mail-to:test@gmail.com',
-                name: 'CONTACT'
+                name: 'CONTACT',
+                showMobile: true,
               }
             ],
-            mobile: {},
+            copyright: '© COPYRIGHT 2015-2020 MIXTILES, LTD',
           },
           languages: [
             {
