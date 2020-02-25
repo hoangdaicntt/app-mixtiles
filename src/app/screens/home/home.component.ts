@@ -13,20 +13,22 @@ export class HomeComponent implements OnInit {
   private swiper: Swiper;
   currentLanguage = null;
   window = window;
+  countImagesExt = 0;
 
   constructor(private appService: AppService) {
   }
 
   async ngOnInit() {
+    if (!!this.appService.getLocalData('images')) {
+      this.countImagesExt = this.appService.getLocalData('images').length;
+    }
     await this.loadInit();
     this.initSlider();
   }
 
   async loadInit() {
     const result: any = await this.appService.init().toPromise();
-    console.log(result);
     this.pageContent = result.home;
-    console.log(result);
   }
 
   initSlider() {

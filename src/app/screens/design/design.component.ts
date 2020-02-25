@@ -22,11 +22,13 @@ export class DesignComponent implements OnInit {
   popupEdit = {
     show: false
   };
+  lowQualityMenuPopup: any;
 
   constructor(private appService: AppService) {
   }
 
   async ngOnInit() {
+    this.restoreImagesFromLocal();
     await this.loadInit();
   }
 
@@ -34,6 +36,7 @@ export class DesignComponent implements OnInit {
     const result: any = await this.appService.init().toPromise();
     this.pageContent = result.design;
     this.editMenuPopup = this.pageContent.editMenuPopup;
+    this.lowQualityMenuPopup = this.pageContent.lowQualityMenuPopup;
     this.headerMenuPopup = result.headerMenuPopup;
     this.checkoutPopup = this.pageContent.checkoutPopup;
   }
@@ -60,6 +63,14 @@ export class DesignComponent implements OnInit {
       if (result.success) {
         image.path = result.path;
         image.size = result.size;
+        // check size
+        if (image.size.width < this.lowQualityMenuPopup.minWidth
+          || image.size.height < this.lowQualityMenuPopup.minHeight) {
+          this.lowQualityMenuPopup.image = image;
+          this.lowQualityMenuPopup.show = true;
+          this.selectedImage = image;
+          this.updateImagesToLocal();
+        }
       }
     });
   }
@@ -68,6 +79,7 @@ export class DesignComponent implements OnInit {
     switch (event.action) {
       case 'remove': {
         this.images = this.images.filter(img => img !== this.selectedImage);
+        this.updateImagesToLocal();
         this.editMenuPopup.show = false;
         break;
       }
@@ -94,6 +106,7 @@ export class DesignComponent implements OnInit {
 
   updateImageEdit(event: any) {
     this.selectedImage.editData = event;
+    this.updateImagesToLocal();
   }
 
   openCheckout() {
@@ -103,5 +116,28 @@ export class DesignComponent implements OnInit {
 
   checkoutAction(event: any) {
     this.checkoutPopup.show = false;
+  }
+
+  lowQualityMenuAction(event: any) {
+    switch (event.action) {
+      case 'remove': {
+        this.images = this.images.filter(img => img !== this.selectedImage);
+        this.lowQualityMenuPopup.show = false;
+        this.updateImagesToLocal();
+        break;
+      }
+      default: {
+        this.lowQualityMenuPopup.show = false;
+        break;
+      }
+    }
+  }
+
+  updateImagesToLocal() {
+    this.appService.saveLocalData('images', this.images);
+  }
+
+  restoreImagesFromLocal() {
+    this.images = (this.appService.getLocalData('images') ? this.appService.getLocalData('images') : []);
   }
 }

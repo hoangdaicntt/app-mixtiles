@@ -11,6 +11,21 @@ export class AppService {
   constructor(private http: HttpClient) {
   }
 
+  getRandomId() {
+    return Math.random().toString(36).substring(7);
+  }
+
+  saveLocalData(dataName, data) {
+    localStorage.setItem(dataName, JSON.stringify(data));
+  }
+
+  getLocalData(dataName) {
+    if (localStorage.getItem(dataName)) {
+      return JSON.parse(localStorage.getItem(dataName));
+    }
+    return null;
+  }
+
   init() {
     return new Observable(subscriber => {
       subscriber.next({
@@ -124,6 +139,7 @@ export class AppService {
             }
           ],
           startButton: 'Let\'s go',
+          startButtonExt: 'Style Your Photos',
         },
         // getstated page
         register: {
@@ -213,9 +229,28 @@ export class AppService {
               {id: 'cancel', name: 'Dismiss', color: '#8c8c8c', background: '#f2f2f2'}
             ]
           },
+          lowQualityMenuPopup: {
+            show: false,
+            minWidth: 2000,
+            minHeight: 2000,
+            image: null,
+            title: 'Low Image Quality',
+            description: 'This photo is actually pretty small. It will probably make a blurry tile!',
+            menus: [
+              {id: 'keep', name: 'Keep Anyway', color: '#e64d00'},
+              {id: 'remove', name: 'Remove From Order'},
+            ]
+          },
           checkoutPopup: {
             show: false,
             title: 'Checkout',
+            addAddress: 'Add address',
+            done: 'Done',
+            iconAddress: 'https://www.mixtiles.com/images/icons/addressIcon.svg',
+            payment: 'Add Payment Method',
+            iconPayment: 'https://www.mixtiles.com/images/icons/creditCardIcon.svg',
+            checkoutText: 'Place Order',
+            successNotify: 'Order successfully!',
             links: {
               address: {
                 icon: '',
@@ -336,7 +371,7 @@ export class AppService {
               price: 'US$132'
             },
           ]
-        }
+        },
       });
       subscriber.complete();
     });
@@ -347,5 +382,19 @@ export class AppService {
     const formData: FormData = new FormData();
     formData.append('fileToUpload', fileToUpload, fileToUpload.name);
     return this.http.post(endpoint, formData);
+  }
+
+  updateSession(session: any) {
+    return this.http.post(environment.host + '/create-session', session);
+  }
+
+  updatePromotion(code: string) {
+    return this.http.post(environment.host + '/promotion-apply/' + environment.sessionId, {
+      promotionCode: code
+    });
+  }
+
+  updateAddress(address) {
+    return this.http.post(environment.host + '/address-add/' + environment.sessionId, address);
   }
 }

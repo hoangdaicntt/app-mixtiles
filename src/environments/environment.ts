@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   language: 'en',
-  host: 'http://kids2.fodeza.com/wordpress'
+  host: 'http://kids2.fodeza.com/wordpress',
+  sessionId: null
 };
 
 /*

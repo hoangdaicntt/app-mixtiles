@@ -1,15 +1,15 @@
-<div class="checkout-component">
+<div class="checkout-component" *ngIf="!!pageContent">
   <div (click)="cancel();" class="checkout-component-bg"></div>
   <div class="checkout-component-content">
-    <h3 class="checkout-title">Checkout</h3>
+    <h3 class="checkout-title">{{pageContent.title}}</h3>
     <ul class="list-link">
       <li (click)="addressPopupShow=true;" class="link-item">
-        <img class="link-icon" src="https://www.mixtiles.com/images/icons/addressIcon.svg">
-        <span class="link-text">Add address</span>
+        <img class="link-icon" [src]="pageContent.iconAddress">
+        <span class="link-text">{{pageContent.addAddress}}</span>
       </li>
       <li class="link-item">
-        <img class="link-icon" src="https://www.mixtiles.com/images/icons/creditCardIcon.svg">
-        <span class="link-text">Add Payment Method</span>
+        <img class="link-icon" [src]="pageContent.iconPayment">
+        <span class="link-text">{{pageContent.payment}}</span>
       </li>
     </ul>
     <div class="order-summary-container">
@@ -30,15 +30,15 @@
       </div>
     </div>
     <div class="bottom-button-container">
-      <div (click)="checkout();" class="bottom-button">Place Order</div>
+      <div (click)="checkout();" class="bottom-button">{{pageContent.checkoutText}}</div>
     </div>
   </div>
 </div>
 
-<app-popup (acceptEvent)="addressPopupShow=false;"
+<app-popup (acceptEvent)="applyAddress();"
            (cancelEvent)="addressPopupShow=false;" *ngIf="addressPopupShow"
-           [title]="'Add address'"
-           [acceptText]="'Done'">
+           [title]="pageContent.addAddress"
+           [acceptText]="pageContent.done">
   <div class="forms-address popup-body">
     <div *ngFor="let field of pageContent.links.address.fields" class="form-item">
       <label class="form-item-label">{{field.name}}</label>

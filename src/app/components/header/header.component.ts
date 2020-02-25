@@ -65,4 +65,9 @@ export class HeaderComponent implements OnInit {
       }
     }
   }
+
+  applyPromotionCode() {
+    this.appService.updatePromotion(this.promotionCode).subscribe(result => {
+    });
+  }
 }

@@ -5,9 +5,12 @@
       <div class="register-form">
         <h3 class="form-title">{{pageContent.title}}</h3>
         <div class="form-body">
-          <input class="form-control" [placeholder]="pageContent.controls.inputFirstName.placeholder">
-          <input class="form-control" [placeholder]="pageContent.controls.inputLastName.placeholder">
-          <input class="form-control" [placeholder]="pageContent.controls.inputEmail.placeholder">
+          <input [(ngModel)]="formData.firstName" class="form-control"
+                 [placeholder]="pageContent.controls.inputFirstName.placeholder">
+          <input [(ngModel)]="formData.lastName" class="form-control"
+                 [placeholder]="pageContent.controls.inputLastName.placeholder">
+          <input [(ngModel)]="formData.email" class="form-control"
+                 [placeholder]="pageContent.controls.inputEmail.placeholder">
         </div>
         <button (click)="submit();" class="btn-submit">{{pageContent.btnSubmit.text}}</button>
       </div>

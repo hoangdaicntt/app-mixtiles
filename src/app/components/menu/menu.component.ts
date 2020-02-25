@@ -7,6 +7,8 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class MenuComponent implements OnInit {
   @Input('menus') menus;
+  @Input('popupTop') popupTop = null;
+  @Input('image') image = null;
   @Output('actionEvent') actionEvent = new EventEmitter();
 
   constructor() {

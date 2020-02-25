@@ -1,6 +1,12 @@
 <div class="popup-menu" *ngIf="!!menus">
   <div class="menu-background" (click)="action('cancel')"></div>
+  <div class="popup-top" *ngIf="!!popupTop">
+    <h3  class="popup-top-title">{{popupTop.title}}</h3>
+    <app-image class="popup-top-img" [image]="image" [imageFrame]="{}"></app-image>
+    <p  class="popup-top-des">{{popupTop.description}}</p>
+  </div>
   <div class="menu-content">
+
     <ul class="menus">
       <li [style.backgroundColor]="menu.background?menu.background:'#fff'" *ngFor="let menu of menus" class="menu-item">
         <a [style.color]="menu.color?menu.color:'#000'" (click)="action(menu.id);" class="menu-link">{{menu.name}}</a>

@@ -44,7 +44,7 @@
 
 <!--Frequent Questions-->
 <app-popup [acceptText]="menus.promotion.done" [title]="menus.promotion.title"
-           (acceptEvent)="showPromotionPopup=false;"
+           (acceptEvent)="showPromotionPopup=false;applyPromotionCode();"
            (cancelEvent)="showPromotionPopup=false;"
            *ngIf="!!menus && showPromotionPopup">
   <div class="promotion-add popup-body">

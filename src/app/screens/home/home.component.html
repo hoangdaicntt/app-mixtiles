@@ -4,10 +4,9 @@
     <h1 class="title">{{pageContent.description}}</h1>
     <div class="video-container">
       <iframe
-        [width]="(window.innerWidth-40)>800?800:(window.innerWidth-40)"
-        [height]="((window.innerWidth-40)>800?800:(window.innerWidth-40))*450/800"
-        class="video-iframe" [src]="pageContent.videoUrl | safe:'resourceUrl'"
-        width="800" height="450"></iframe>
+        width="{{(window.innerWidth-20)>800?800:(window.innerWidth-20)}}"
+        height="{{((window.innerWidth-20)>800?800:(window.innerWidth-20))*450/800}}"
+        class="video-iframe" [src]="pageContent.videoUrl | safe:'resourceUrl'"></iframe>
     </div>
     <div class="video-desc">
       <p class="video-des-text">{{pageContent.descriptionVideo}}</p>
@@ -52,6 +51,7 @@
   <app-footer></app-footer>
 
   <div class="footer">
-    <button [routerLink]="['/getstarted']" class="btn-start">{{pageContent.startButton}}</button>
+    <button [routerLink]="['/getstarted']"
+            class="btn-start">{{(!!countImagesExt ? (pageContent.startButtonExt + ' (' + countImagesExt + ')') : pageContent.startButton)}}</button>
   </div>
 </div>

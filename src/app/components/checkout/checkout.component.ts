@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AppService} from '../../services/app.service';
 
 @Component({
   selector: 'app-checkout',
@@ -11,10 +12,10 @@ export class CheckoutComponent implements OnInit {
 
   addressPopupShow = false;
 
-  constructor() {
+  constructor(private appService: AppService) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
   }
 
   checkout() {
@@ -25,4 +26,9 @@ export class CheckoutComponent implements OnInit {
     this.checkoutEvent.emit(null);
   }
 
+  applyAddress() {
+    this.appService.updateAddress(this.pageContent.links.address.fields).subscribe(result => {
+      this.addressPopupShow = false;
+    });
+  }
 }
