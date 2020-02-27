@@ -13,7 +13,7 @@ export class RegisterComponent implements OnInit {
   pageContent: any;
   headerMenuPopup;
   formData = {
-    sessonId: 'Mã id client sẽ sinh, dạng UUID',
+    sessionId: 'Mã id client sẽ sinh, dạng UUID',
     firstName: '',
     lastName: '',
     email: '',
@@ -29,8 +29,8 @@ export class RegisterComponent implements OnInit {
       this.formData = this.appService.getLocalData('session');
       this.router.navigate(['/design']);
     } else {
-      this.formData.sessonId = this.appService.getRandomId();
-      environment.sessionId = this.formData.sessonId;
+      this.formData.sessionId = this.appService.getRandomId();
+      environment.sessionId = this.formData.sessionId;
     }
     await this.loadInit();
   }

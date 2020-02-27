@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     if (!!this.appService.getLocalData('session')) {
-      environment.sessionId = this.appService.getLocalData('session').sessionId;
+      environment.sessionId = !!this.appService.getLocalData('session') ? this.appService.getLocalData('session').sessionId : null;
     }
   }
 }
