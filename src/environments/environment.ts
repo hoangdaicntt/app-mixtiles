@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  language: 'en',
-  host: 'http://kids2.fodeza.com/wordpress',
+  language: 'vn',
+  host: 'http://admin.decor22.vn/api',
   sessionId: null
 };
 

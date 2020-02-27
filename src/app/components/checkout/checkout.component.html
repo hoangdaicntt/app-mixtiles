@@ -14,19 +14,13 @@
     </ul>
     <div class="order-summary-container">
       <div class="order-summary">
-        <div class="summary-item">
-          <div class="text"><span class="summary-text">6 tiles</span></div>
-          <div class="value">US$66</div>
-        </div>
-        <div class="summary-item">
-          <div class="text"><span class="summary-text">Shipping</span></div>
-          <div class="value">Free</div>
-        </div>
-        <div class="try-before-you-buy-separator"></div>
-        <div class="summary-item strong">
-          <div class="text"><span class="summary-text">Total</span></div>
-          <div class="value">US$66</div>
-        </div>
+        <ng-container *ngIf="!!checkOutInfo && !!checkOutInfo.data" >
+          <div *ngFor="let item of checkOutInfo.data" class="summary-item">
+            <div class="text"><span class="summary-text">{{item.name}}</span></div>
+            <div class="value">{{item.value}}</div>
+          </div>
+        </ng-container>
+
       </div>
     </div>
     <div class="bottom-button-container">

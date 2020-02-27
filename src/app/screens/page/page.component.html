@@ -1,6 +1,6 @@
 <app-header [isHeaderWeb]="true"></app-header>
 
-<div class="news-page">
+<div *ngIf="!!pageContent" class="news-page">
   <div class="news-departments">
     <div class="newsDepartment">
       <div class="department-name">{{pageContent.title}}</div>

@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,18 @@ export class AppService {
   }
 
   init() {
+    if (!!this.getLocalData('init-data')) {
+      return new Observable(subscriber => {
+        subscriber.next(this.getLocalData('init-data'));
+        subscriber.complete();
+      });
+    } else {
+      return this.http.get(environment.host + '/init/' + environment.language).pipe(map(source => {
+        console.log(source);
+        this.saveLocalData('init-data', source);
+        return source;
+      }));
+    }
     return new Observable(subscriber => {
       subscriber.next({
         settings: {
@@ -378,7 +391,7 @@ export class AppService {
   }
 
   upload(fileToUpload: File) {
-    const endpoint = environment.host + '/upload.php';
+    const endpoint = environment.host + '/image-upload/' + environment.sessionId;
     const formData: FormData = new FormData();
     formData.append('fileToUpload', fileToUpload, fileToUpload.name);
     return this.http.post(endpoint, formData);
@@ -396,5 +409,21 @@ export class AppService {
 
   updateAddress(address) {
     return this.http.post(environment.host + '/address-add/' + environment.sessionId, address);
+  }
+
+  getCheckoutInfo() {
+    return this.http.get(environment.host + '/get-checkout/' + environment.sessionId);
+  }
+
+  getNews(page = 0) {
+    return this.http.get(environment.host + '/news/' + environment.sessionId + '/' + page);
+  }
+
+  getNewsDetail(slug) {
+    return this.http.get(environment.host + '/news-detail/' + environment.sessionId + '/' + slug);
+  }
+
+  getPageDetail(slug) {
+    return this.http.get(environment.host + '/page/' + environment.sessionId + '/' + slug);
   }
 }

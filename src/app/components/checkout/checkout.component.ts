@@ -9,13 +9,14 @@ import {AppService} from '../../services/app.service';
 export class CheckoutComponent implements OnInit {
   @Input('dataInit') pageContent: any;
   @Output('checkoutEvent') checkoutEvent = new EventEmitter();
-
+  checkOutInfo = {};
   addressPopupShow = false;
 
   constructor(private appService: AppService) {
   }
 
   async ngOnInit() {
+    this.getCheckoutInfo();
   }
 
   checkout() {
@@ -29,6 +30,12 @@ export class CheckoutComponent implements OnInit {
   applyAddress() {
     this.appService.updateAddress(this.pageContent.links.address.fields).subscribe(result => {
       this.addressPopupShow = false;
+    });
+  }
+
+  getCheckoutInfo() {
+    this.appService.getCheckoutInfo().subscribe(result => {
+      this.checkOutInfo = result;
     });
   }
 }
