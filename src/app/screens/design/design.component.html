@@ -16,7 +16,7 @@
          [style.backgroundImage]="(images.length===0?('url(\''+pageContent.backgroundImageUrl+'\')'):'none') | safe:'style'"
          [style.backgroundColor]="(images.length>0?'#ededed':'none')">
 
-      <input accept="image/png, image/jpeg"
+      <input  multiple="multiple" accept="image/png, image/jpeg"
              (change)="handleFileInput($event.target.files); fileUploadHidden.value = '';" #fileUploadHidden type="file"
              style="display: none">
       <div class="list-images" [style.width]="(images.length*279+251)+'px'">

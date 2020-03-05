@@ -47,11 +47,12 @@ export class DesignComponent implements OnInit {
   }
 
   handleFileInput(files: FileList) {
-    this.fileToUpload = files.item(0);
-    this.upload();
+    for (let i = 0; i < files.length; i++) {
+      this.upload(files.item(i));
+    }
   }
 
-  upload() {
+  async upload(fileToUpload) {
     const image = {
       id: '',
       name: '',
@@ -59,20 +60,19 @@ export class DesignComponent implements OnInit {
       size: {width: 0, height: 0}
     };
     this.images.push(image);
-    this.appService.upload(this.fileToUpload).subscribe((result: any) => {
-      if (result.success) {
-        image.path = result.path;
-        image.size = result.size;
-        // check size
-        if (image.size.width < this.lowQualityMenuPopup.minWidth
-          || image.size.height < this.lowQualityMenuPopup.minHeight) {
-          this.lowQualityMenuPopup.image = image;
-          this.lowQualityMenuPopup.show = true;
-          this.selectedImage = image;
-          this.updateImagesToLocal();
-        }
+    const result: any = await this.appService.upload(fileToUpload).toPromise().catch(err => null);
+    if (result && result.success) {
+      image.path = result.path;
+      image.size = result.size;
+      // check size
+      if (image.size.width < this.lowQualityMenuPopup.minWidth
+        || image.size.height < this.lowQualityMenuPopup.minHeight) {
+        this.lowQualityMenuPopup.image = image;
+        this.lowQualityMenuPopup.show = true;
+        this.selectedImage = image;
+        this.updateImagesToLocal();
       }
-    });
+    }
   }
 
   editMenuAction(event: any) {
