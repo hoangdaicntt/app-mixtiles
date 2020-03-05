@@ -9,6 +9,7 @@ import {environment} from '../environments/environment';
 })
 export class AppComponent implements OnInit {
   constructor(private appService: AppService) {
+    localStorage.clear();
   }
 
 
