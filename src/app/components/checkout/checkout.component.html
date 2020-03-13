@@ -7,6 +7,22 @@
         <img class="link-icon" [src]="pageContent.iconAddress">
         <span class="link-text">{{pageContent.addAddress}}</span>
       </li>
+<!--      <li class="link-item">-->
+<!--        <img class="link-icon" [src]="pageContent.iconPayment">-->
+<!--        <span class="link-text">{{pageContent.payment}}</span>-->
+<!--      </li>-->
+    </ul>
+    <div class="forms-address popup-body">
+      <div *ngFor="let field of pageContent.links.address.fields" class="form-item">
+        <label class="form-item-label">{{field.name}}</label>
+        <input class="form-item-input" [(ngModel)]="field.value" [placeholder]="field.placeholder">
+      </div>
+    </div>
+    <ul class="list-link">
+<!--      <li (click)="addressPopupShow=true;" class="link-item">-->
+<!--        <img class="link-icon" [src]="pageContent.iconAddress">-->
+<!--        <span class="link-text">{{pageContent.addAddress}}</span>-->
+<!--      </li>-->
       <li class="link-item">
         <img class="link-icon" [src]="pageContent.iconPayment">
         <span class="link-text">{{pageContent.payment}}</span>

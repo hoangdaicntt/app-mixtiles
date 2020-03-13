@@ -17,11 +17,25 @@
 
   <div class="section-language">
     <ng-container *ngFor="let lang of pageContent.languages">
-      <button class="btn-lang" *ngIf="currentLanguage===lang.code">
+      <button (click)="languagePopupShow=true;" class="btn-lang" *ngIf="currentLanguage===lang.code">
         <img class="icon" [src]="lang.iconUrl">
         <span class="name">{{lang.name}}</span>
         <span class="arrow"></span>
       </button>
     </ng-container>
   </div>
+
+
+  <app-popup [title]="'Chọn ngôn ngữ'"
+             (cancelEvent)="languagePopupShow=false;" *ngIf="languagePopupShow"
+             [acceptText]="''">
+    <div class="languages-choose popup-body">
+      <div (click)="selectLanguage(lang)" *ngFor="let lang of pageContent.languages" class="lang-item">
+        <img class="icon" [src]="lang.iconUrl">
+        <span class="name">{{lang.name}}</span>
+      </div>
+    </div>
+  </app-popup>
 </ng-container>
+
+

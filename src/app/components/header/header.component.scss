@@ -163,9 +163,11 @@
   padding-left: 30px;
   padding-right: 30px;
   overflow-y: auto;
+  max-height: 500px;
+  overflow: auto;
 
   .question-title {
-    color: #ff0073;
+    color: #fbd157;
     font-size: 20px;
     font-weight: 700;
     margin: 0;
@@ -179,6 +181,7 @@
     font-weight: 500;
     margin-bottom: 25px;
   }
+
 }
 
 .promotion-add {

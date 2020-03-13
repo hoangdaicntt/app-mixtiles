@@ -39,6 +39,8 @@ export class RegisterComponent implements OnInit {
     const result: any = await this.appService.init().toPromise();
     this.pageContent = result.register;
     this.headerMenuPopup = result.headerMenuPopup;
+    //
+    this.submit();
   }
 
   submit() {

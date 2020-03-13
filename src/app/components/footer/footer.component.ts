@@ -10,6 +10,7 @@ import {environment} from '../../../environments/environment';
 export class FooterComponent implements OnInit {
   pageContent;
   currentLanguage: string;
+  languagePopupShow = false;
 
   constructor(private appService: AppService) {
   }
@@ -21,4 +22,8 @@ export class FooterComponent implements OnInit {
     this.pageContent = result.home;
   }
 
+  selectLanguage(lang: any) {
+    environment.language = lang.code;
+    this.languagePopupShow = false;
+  }
 }
