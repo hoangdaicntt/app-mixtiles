@@ -4,7 +4,7 @@
     <div class="design-header">
       <div class="list-styles">
         <ng-container *ngFor="let style of pageContent.styles">
-          <div (click)="styleCodeSelected=style.code" [ngClass]="{'selected':styleCodeSelected===style.code}"
+          <div (click)="styleCodeSelected=style.code;selectCode()" [ngClass]="{'selected':styleCodeSelected===style.code}"
                class="style-item">
             <img class="style-icon" [src]="style.iconUrl">
             <p class="style-name">{{style.name}}</p>

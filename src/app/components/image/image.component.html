@@ -1,4 +1,4 @@
-<div (click)="selectImage(image);" class="image-item">
+<div *ngIf="!!imageFrame && !!image" (click)="selectImage(image);" class="image-item">
   <div class="image-main-container" [ngClass]="{'padding':!!imageFrame.isPadding}">
     <img *ngIf="!!image.path" [style.top]="getImagePosition().top+'px'"
          [style.left]="getImagePosition().left+'px'"

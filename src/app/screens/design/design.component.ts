@@ -39,6 +39,9 @@ export class DesignComponent implements OnInit {
     this.lowQualityMenuPopup = this.pageContent.lowQualityMenuPopup;
     this.headerMenuPopup = result.headerMenuPopup;
     this.checkoutPopup = this.pageContent.checkoutPopup;
+    if (!this.styleCodeSelected && !!this.pageContent) {
+      this.styleCodeSelected = this.pageContent.styles[0].code;
+    }
   }
 
   imageFrame() {
@@ -139,5 +142,13 @@ export class DesignComponent implements OnInit {
 
   restoreImagesFromLocal() {
     this.images = (this.appService.getLocalData('images') ? this.appService.getLocalData('images') : []);
+    this.styleCodeSelected = (this.appService.getLocalData('styleCodeSelected') ? this.appService.getLocalData('styleCodeSelected') : '');
+    if (!this.styleCodeSelected && !!this.pageContent) {
+      this.styleCodeSelected = this.pageContent.styles[0].code;
+    }
+  }
+
+  selectCode() {
+    this.appService.saveLocalData('styleCodeSelected', this.styleCodeSelected);
   }
 }

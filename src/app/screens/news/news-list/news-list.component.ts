@@ -19,6 +19,7 @@ export class NewsListComponent implements OnInit {
     const page: any = !!url.searchParams.get('page') ? url.searchParams.get('page') : 0;
     this.appService.getNews(page).subscribe(result => {
       this.pageContent = result;
+      console.log(this.pageContent);
       this.seoService.init(this.pageContent.seo);
     });
   }
