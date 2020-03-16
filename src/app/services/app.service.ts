@@ -391,24 +391,24 @@ export class AppService {
   }
 
   upload(fileToUpload: File) {
-    const endpoint = environment.host + '/imageUpload/' + environment.sessionId;
+    const endpoint = environment.host + '/image-upload/' + environment.sessionId;
     const formData: FormData = new FormData();
     formData.append('fileToUpload', fileToUpload, fileToUpload.name);
     return this.http.post(endpoint, formData);
   }
 
   updateSession(session: any) {
-    return this.http.post(environment.host + '/createSession', session);
+    return this.http.post(environment.host + '/create-session', session);
   }
 
   updatePromotion(code: string) {
-    return this.http.post(environment.host + '/promotionApply/' + environment.sessionId, {
+    return this.http.post(environment.host + '/site/promotionApply/' + environment.sessionId, {
       promotionCode: code
     });
   }
 
   updateAddress(address) {
-    return this.http.post(environment.host + '/addressAdd/' + environment.sessionId, address);
+    return this.http.post(environment.host + '/address-add/' + environment.sessionId, address);
   }
 
   getCheckoutInfo() {
@@ -420,10 +420,10 @@ export class AppService {
   }
 
   getNewsDetail(slug) {
-    return this.http.get(environment.host + '/newsDetail/' + environment.sessionId + '/' + slug);
+    return this.http.get(environment.host + '/news-detail/' + environment.sessionId + '/' + slug);
   }
 
   getPageDetail(slug) {
-    return this.http.get(environment.host + '/newsDetailAndPage/' + environment.sessionId + '/' + slug);
+    return this.http.get(environment.host + '/page/' + environment.sessionId + '/' + slug);
   }
 }
