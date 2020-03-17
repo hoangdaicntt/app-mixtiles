@@ -415,6 +415,10 @@ export class AppService {
     return this.http.get(environment.host + '/getCheckout/' + environment.sessionId);
   }
 
+  checkout(checkoutData) {
+    return this.http.post(environment.host + '/getCheckout/' + environment.sessionId, checkoutData);
+  }
+
   getNews(page = 0) {
     return this.http.get(environment.host + '/news/' + environment.sessionId + '/' + page);
   }

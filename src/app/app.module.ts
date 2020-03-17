@@ -13,13 +13,14 @@ import {FormsModule} from '@angular/forms';
 import {MenuComponent} from './components/menu/menu.component';
 import {PopupComponent} from './components/popup/popup.component';
 import {ZoomComponent} from './components/zoom/zoom.component';
-import { ImageComponent } from './components/image/image.component';
-import { CheckoutComponent } from './components/checkout/checkout.component';
-import { GiftComponent } from './screens/gift/gift.component';
-import { NewsListComponent } from './screens/news/news-list/news-list.component';
-import { NewsDetailComponent } from './screens/news/news-detail/news-detail.component';
-import { PageComponent } from './screens/page/page.component';
-import { FooterComponent } from './components/footer/footer.component';
+import {ImageComponent} from './components/image/image.component';
+import {CheckoutComponent} from './components/checkout/checkout.component';
+import {GiftComponent} from './screens/gift/gift.component';
+import {NewsListComponent} from './screens/news/news-list/news-list.component';
+import {NewsDetailComponent} from './screens/news/news-detail/news-detail.component';
+import {PageComponent} from './screens/page/page.component';
+import {FooterComponent} from './components/footer/footer.component';
+import {SweetAlert2Module} from '@sweetalert2/ngx-sweetalert2';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { FooterComponent } from './components/footer/footer.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    SweetAlert2Module.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

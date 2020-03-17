@@ -3,34 +3,38 @@
   <div class="checkout-component-content">
     <h3 class="checkout-title">{{pageContent.title}}</h3>
     <ul class="list-link">
-      <li (click)="addressPopupShow=true;" class="link-item">
+      <li class="link-item">
         <img class="link-icon" [src]="pageContent.iconAddress">
         <span class="link-text">{{pageContent.addAddress}}</span>
       </li>
-<!--      <li class="link-item">-->
-<!--        <img class="link-icon" [src]="pageContent.iconPayment">-->
-<!--        <span class="link-text">{{pageContent.payment}}</span>-->
-<!--      </li>-->
+      <!--      <li class="link-item">-->
+      <!--        <img class="link-icon" [src]="pageContent.iconPayment">-->
+      <!--        <span class="link-text">{{pageContent.payment}}</span>-->
+      <!--      </li>-->
     </ul>
     <div class="forms-address popup-body">
       <div *ngFor="let field of pageContent.links.address.fields" class="form-item">
         <label class="form-item-label">{{field.name}}</label>
-        <input class="form-item-input" [(ngModel)]="field.value" [placeholder]="field.placeholder">
+        <input *ngIf="field.type!=='select'" class="form-item-input" [(ngModel)]="field.value"
+               [placeholder]="field.placeholder">
+        <select *ngIf="field.type==='select'" class="form-item-input" [(ngModel)]="field.value">
+          <option *ngFor="let option of field.options" [value]="option.id">{{option.name}}</option>
+        </select>
       </div>
     </div>
     <ul class="list-link">
-<!--      <li (click)="addressPopupShow=true;" class="link-item">-->
-<!--        <img class="link-icon" [src]="pageContent.iconAddress">-->
-<!--        <span class="link-text">{{pageContent.addAddress}}</span>-->
-<!--      </li>-->
-      <li class="link-item">
-        <img class="link-icon" [src]="pageContent.iconPayment">
-        <span class="link-text">{{pageContent.payment}}</span>
-      </li>
+      <!--      <li (click)="addressPopupShow=true;" class="link-item">-->
+      <!--        <img class="link-icon" [src]="pageContent.iconAddress">-->
+      <!--        <span class="link-text">{{pageContent.addAddress}}</span>-->
+      <!--      </li>-->
+      <!--      <li class="link-item">-->
+      <!--        <img class="link-icon" [src]="pageContent.iconPayment">-->
+      <!--        <span class="link-text">{{pageContent.payment}}</span>-->
+      <!--      </li>-->
     </ul>
     <div class="order-summary-container">
       <div class="order-summary">
-        <ng-container *ngIf="!!checkOutInfo && !!checkOutInfo.data" >
+        <ng-container *ngIf="!!checkOutInfo && !!checkOutInfo.data">
           <div *ngFor="let item of checkOutInfo.data" class="summary-item">
             <div class="text"><span class="summary-text">{{item.name}}</span></div>
             <div class="value">{{item.value}}</div>
@@ -58,3 +62,20 @@
 </app-popup>
 
 
+<swal
+  #okSwal
+  title="Thông báo thành công"
+  text="Đơn hàng của bạn đã được đặt thành công. Chúng tôi sẽ sớm liên hệ với bạn để xác nhận đơn hàng!!!"
+  icon="success"
+  [showCancelButton]="false"
+  [focusCancel]="true">
+</swal>
+
+<swal
+  #confirmSwal
+  title="Thông báo"
+  [text]="(this.images.length>3)?'Xác nhận đặt đơn hàng này?':'Đơn hàng với 4 khung ảnh trở lên sẽ được freeship. Xác nhận đơn hàng này?'"
+  icon="question"
+  [showCancelButton]="true"
+  [focusCancel]="true">
+</swal>

@@ -4,7 +4,8 @@
     <div class="design-header">
       <div class="list-styles">
         <ng-container *ngFor="let style of pageContent.styles">
-          <div (click)="styleCodeSelected=style.code;selectCode()" [ngClass]="{'selected':styleCodeSelected===style.code}"
+          <div (click)="styleCodeSelected=style.code;selectCode()"
+               [ngClass]="{'selected':styleCodeSelected===style.code}"
                class="style-item">
             <img class="style-icon" [src]="style.iconUrl">
             <p class="style-name">{{style.name}}</p>
@@ -16,7 +17,7 @@
          [style.backgroundImage]="(images.length===0?('url(\''+pageContent.backgroundImageUrl+'\')'):'none') | safe:'style'"
          [style.backgroundColor]="(images.length>0?'#ededed':'none')">
 
-      <input  multiple="multiple" accept="image/png, image/jpeg"
+      <input multiple="multiple" accept="image/png, image/jpeg"
              (change)="handleFileInput($event.target.files); fileUploadHidden.value = '';" #fileUploadHidden type="file"
              style="display: none">
       <div class="list-images" [style.width]="(images.length*279+251)+'px'">
@@ -59,7 +60,9 @@
             (acceptEvent)="popupEdit.show=false;updateImageEdit($event)"
             (cancelEvent)="popupEdit.show=false;" *ngIf="popupEdit.show"></app-zoom>
 
-  <app-checkout (checkoutEvent)="checkoutAction($event)"
+  <app-checkout [images]="images"
+                [imageFrame]="imageFrame()"
+                (checkoutEvent)="checkoutAction($event)"
                 [dataInit]="pageContent.checkoutPopup"
                 *ngIf="checkoutPopup.show"></app-checkout>
 </div>

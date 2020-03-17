@@ -65,6 +65,7 @@ export class DesignComponent implements OnInit {
     this.images.push(image);
     const result: any = await this.appService.upload(fileToUpload).toPromise().catch(err => null);
     if (result && result.success) {
+      image.id = result.id;
       image.path = result.path;
       image.size = result.size;
       // check size
