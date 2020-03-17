@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   language: 'vn',
-  host: 'http://admin.decor22.vn/api',
+  host: 'http://admin.decor22.vn/api/site',
   sessionId: null
 };
 
