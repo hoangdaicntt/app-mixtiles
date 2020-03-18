@@ -15,9 +15,9 @@ export class CheckoutComponent implements OnInit {
   @Input('imageFrame') imageFrame: any;
   @Input('dataInit') pageContent: any;
   @Output('checkoutEvent') checkoutEvent = new EventEmitter();
-  @ViewChild('okSwal', {static: false}) private deleteSwal: SwalComponent;
-  @ViewChild('confirmSwal', {static: false}) private confirmSwal: SwalComponent;
-  checkOutInfo = {};
+  @ViewChild('okSwal') private deleteSwal: SwalComponent;
+  @ViewChild('confirmSwal') private confirmSwal: SwalComponent;
+  checkOutInfo: any = {};
   addressPopupShow = false;
 
   constructor(private appService: AppService) {
