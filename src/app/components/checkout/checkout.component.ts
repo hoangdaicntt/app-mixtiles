@@ -62,7 +62,10 @@ export class CheckoutComponent implements OnInit {
       clientTime: new Date().getTime()
     };
     await this.appService.checkout(checkoutData).toPromise();
-    this.deleteSwal.fire();
+    this.deleteSwal.fire().then(res => {
+      localStorage.clear();
+      location.reload();
+    });
     this.checkoutEvent.emit();
   }
 

@@ -18,12 +18,15 @@
         <input *ngIf="field.type!=='select'" class="form-item-input" [(ngModel)]="field.value"
                [placeholder]="field.placeholder">
 
-        <select (change)="getDistrict(field.value)" *ngIf="field.type==='select' && field.id==='province'" class="form-item-input" [(ngModel)]="field.value">
+        <select (change)="getDistrict(field.value)" *ngIf="field.type==='select' && field.id==='province'"
+                class="form-item-input" [(ngModel)]="field.value">
           <option *ngFor="let option of province.provinces" [value]="option.ProvinceId">{{option.ProvinceName}}</option>
         </select>
 
-        <select (change)="getWard(field.value)" *ngIf="field.type==='select' && field.id==='district'" class="form-item-input" [(ngModel)]="field.value">
-          <option *ngFor="let option of province.districtsView" [value]="option.DistrictId">{{option.DistrictName}}</option>
+        <select (change)="getWard(field.value)" *ngIf="field.type==='select' && field.id==='district'"
+                class="form-item-input" [(ngModel)]="field.value">
+          <option *ngFor="let option of province.districtsView"
+                  [value]="option.DistrictId">{{option.DistrictName}}</option>
         </select>
 
         <select *ngIf="field.type==='select' && field.id==='ward'" class="form-item-input" [(ngModel)]="field.value">
@@ -53,6 +56,9 @@
 
       </div>
     </div>
+    <p class="notify-freeship" *ngIf="!(this.images.length>3)">
+     (*) Đơn hàng với 4 khung ảnh trở lên sẽ được freeship.
+    </p>
     <div class="bottom-button-container">
       <div (click)="checkout();" class="bottom-button">{{pageContent.checkoutText}}</div>
     </div>
@@ -84,7 +90,7 @@
 <swal
   #confirmSwal
   title="Thông báo"
-  [text]="(this.images.length>3)?'Xác nhận đặt đơn hàng này?':'Đơn hàng với 4 khung ảnh trở lên sẽ được freeship. Xác nhận đơn hàng này?'"
+  [text]="'Xác nhận đặt đơn hàng này?'"
   icon="question"
   [showCancelButton]="true"
   [focusCancel]="true">
