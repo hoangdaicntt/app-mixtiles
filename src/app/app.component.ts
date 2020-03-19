@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
     } else {
       this.formData.sessionId = this.appService.getRandomId();
       environment.sessionId = this.formData.sessionId;
+      this.appService.saveLocalData('session', this.formData);
       this.appService.updateSession(this.formData).subscribe(result => {
       });
     }
