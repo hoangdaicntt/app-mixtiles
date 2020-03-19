@@ -18,13 +18,21 @@ export class CheckoutComponent implements OnInit {
   @ViewChild('okSwal') private deleteSwal: SwalComponent;
   @ViewChild('confirmSwal') private confirmSwal: SwalComponent;
   checkOutInfo: any = {};
+  province: any = {
+    districts: [],
+    districtsView: [],
+    wardsView: [],
+    wards: [],
+  };
   addressPopupShow = false;
 
   constructor(private appService: AppService) {
   }
 
   async ngOnInit() {
+    this.province = await this.appService.getProvince().toPromise();
     this.getCheckoutInfo();
+    console.log(this.province);
   }
 
   async checkout() {
@@ -106,5 +114,13 @@ export class CheckoutComponent implements OnInit {
     this.appService.getCheckoutInfo().subscribe(result => {
       this.checkOutInfo = result;
     });
+  }
+
+  getDistrict(value: any) {
+    this.province.districtsView = this.province.districts.filter(x => x.ProvinceId === value);
+  }
+
+  getWard(value: any) {
+    this.province.wardsView = this.province.wards.filter(x => x.DistrictId === value);
   }
 }

@@ -430,4 +430,8 @@ export class AppService {
   getPageDetail(slug) {
     return this.http.get(environment.host + '/newsDetailAndPage/' + environment.sessionId + '/' + slug);
   }
+
+  getProvince() {
+    return this.http.get(environment.host + '/province');
+  }
 }

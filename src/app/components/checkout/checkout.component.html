@@ -17,9 +17,19 @@
         <label class="form-item-label">{{field.name}}</label>
         <input *ngIf="field.type!=='select'" class="form-item-input" [(ngModel)]="field.value"
                [placeholder]="field.placeholder">
-        <select *ngIf="field.type==='select'" class="form-item-input" [(ngModel)]="field.value">
-          <option *ngFor="let option of field.options" [value]="option.id">{{option.name}}</option>
+
+        <select (change)="getDistrict(field.value)" *ngIf="field.type==='select' && field.id==='province'" class="form-item-input" [(ngModel)]="field.value">
+          <option *ngFor="let option of province.provinces" [value]="option.ProvinceId">{{option.ProvinceName}}</option>
         </select>
+
+        <select (change)="getWard(field.value)" *ngIf="field.type==='select' && field.id==='district'" class="form-item-input" [(ngModel)]="field.value">
+          <option *ngFor="let option of province.districtsView" [value]="option.DistrictId">{{option.DistrictName}}</option>
+        </select>
+
+        <select *ngIf="field.type==='select' && field.id==='ward'" class="form-item-input" [(ngModel)]="field.value">
+          <option *ngFor="let option of province.wardsView" [value]="option.WardId">{{option.WardName}}</option>
+        </select>
+
       </div>
     </div>
     <ul class="list-link">
