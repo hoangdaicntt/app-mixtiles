@@ -60,7 +60,7 @@
      (*) Đơn hàng với 4 khung ảnh trở lên sẽ được freeship.
     </p>
     <div class="bottom-button-container">
-      <div (click)="checkout();" class="bottom-button">{{processing?'Đang xử lý...':pageContent.checkoutText}}</div>
+      <div (click)="!processing?checkout():null;" class="bottom-button">{{processing?'Đang xử lý...':pageContent.checkoutText}}</div>
     </div>
   </div>
 </div>
