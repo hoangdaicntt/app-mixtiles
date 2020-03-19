@@ -65,7 +65,7 @@ export class CheckoutComponent implements OnInit {
 
     this.deleteSwal.fire().then(res => {
       if (!!resultCheckout && !!resultCheckout.success) {
-        localStorage.removeItem('session');
+        localStorage.clear();
         location.reload();
       }
       // localStorage.clear();
