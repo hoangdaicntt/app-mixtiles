@@ -24,7 +24,9 @@ app-root, app-register {
 .desktop-hide {
   display: none;
 }
-
+input {
+  -webkit-appearance: none;
+}
 
 @media only screen and (max-width: 600px) {
   .mobile-hide {

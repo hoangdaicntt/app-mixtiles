@@ -411,10 +411,12 @@ export class AppService {
     return this.http.post(environment.host + '/addressAdd/' + environment.sessionId, address);
   }
 
+  // Lấy thông tin thanh toán
   getCheckoutInfo() {
     return this.http.get(environment.host + '/getCheckout/' + environment.sessionId);
   }
 
+  // Xác nhận thanh toán
   checkout(checkoutData) {
     return this.http.post(environment.host + '/getCheckout/' + environment.sessionId, checkoutData);
   }
