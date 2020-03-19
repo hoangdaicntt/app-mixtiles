@@ -416,7 +416,7 @@ export class AppService {
   }
 
   checkout(checkoutData) {
-    return this.http.post(environment.host + '/getCheckout/' + environment.sessionId, checkoutData);
+    return this.http.post(environment.host + '/checkout/' + environment.sessionId, checkoutData);
   }
 
   getNews(page = 0) {
