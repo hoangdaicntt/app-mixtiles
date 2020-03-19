@@ -74,8 +74,8 @@ export class DesignComponent implements OnInit {
         this.lowQualityMenuPopup.image = image;
         this.lowQualityMenuPopup.show = true;
         this.selectedImage = image;
-        this.updateImagesToLocal();
       }
+      this.updateImagesToLocal();
     }
   }
 
