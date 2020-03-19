@@ -82,6 +82,8 @@ export class DesignComponent implements OnInit {
   editMenuAction(event: any) {
     switch (event.action) {
       case 'remove': {
+        this.appService.deleteImage(this.selectedImage.id).subscribe(res => {
+        });
         this.images = this.images.filter(img => img !== this.selectedImage);
         this.updateImagesToLocal();
         this.editMenuPopup.show = false;

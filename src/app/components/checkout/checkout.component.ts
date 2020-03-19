@@ -25,6 +25,7 @@ export class CheckoutComponent implements OnInit {
     wards: [],
   };
   addressPopupShow = false;
+  processing = false;
 
   constructor(private appService: AppService) {
   }
@@ -49,6 +50,7 @@ export class CheckoutComponent implements OnInit {
     const addressData = this.pageContent.links.address.fields.map(x => {
       return {id: x.id, value: x.value};
     });
+    this.processing = true;
     await this.appService.updateAddress(addressData).toPromise();
     const checkoutData = {
       imageData: this.images.map(item => {
@@ -62,6 +64,7 @@ export class CheckoutComponent implements OnInit {
       clientTime: new Date().getTime()
     };
     const resultCheckout: any = await this.appService.checkout(checkoutData).toPromise();
+    this.processing = false;
 
     this.deleteSwal.fire().then(res => {
       if (!!resultCheckout && !!resultCheckout.success) {

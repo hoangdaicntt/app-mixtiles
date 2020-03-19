@@ -407,6 +407,10 @@ export class AppService {
     });
   }
 
+  deleteImage(id) {
+    return this.http.get(environment.host + '/deleteImage/' + id);
+  }
+
   updateAddress(address) {
     return this.http.post(environment.host + '/addressAdd/' + environment.sessionId, address);
   }
