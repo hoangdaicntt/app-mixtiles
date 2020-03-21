@@ -3,6 +3,7 @@ import {AppService} from '../../services/app.service';
 import {SwalComponent} from '@sweetalert2/ngx-sweetalert2';
 // @ts-ignore
 import {DismissReason} from 'sweetalert2';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -26,28 +27,30 @@ export class CheckoutComponent implements OnInit {
   };
   addressPopupShow = false;
   processing = false;
+  screenConfirm = false;
+  resultOrder = false;
 
-  constructor(private appService: AppService) {
+  constructor(private appService: AppService, private router: Router) {
+    this.screenConfirm = false;
   }
 
   async ngOnInit() {
     this.appService.getProvince().subscribe(res => {
       this.province = res;
+      const city = this.pageContent.links.address.fields.find(x => x.id === 'province');
+      if (city && city.value) {
+        this.getDistrict(city.value);
+      }
+      const district = this.pageContent.links.address.fields.find(x => x.id === 'district');
+      if (district && district.value) {
+        this.getWard(district.value);
+      }
     });
     this.getCheckoutInfo();
+
   }
 
   async checkout() {
-    const check = this.pageContent.links.address.fields.filter(x => (!!x.required && !x.value));
-    if (!!check && check.length > 0) {
-      alert(check[0].name + ' không được để trống!');
-      return;
-    }
-
-    const result = await this.confirmSwal.fire();
-    if (result.dismiss === DismissReason.cancel) {
-      return;
-    }
     const addressData = this.pageContent.links.address.fields.map(x => {
       return {id: x.id, value: x.value};
     });
@@ -65,17 +68,18 @@ export class CheckoutComponent implements OnInit {
       clientTime: new Date().getTime()
     };
     const resultCheckout: any = await this.appService.checkout(checkoutData).toPromise();
-    this.processing = false;
+    // this.processing = false;
+    this.resultOrder = true;
 
-    this.deleteSwal.fire().then(res => {
-      if (!!resultCheckout && !!resultCheckout.success) {
-        localStorage.clear();
-        location.reload();
-      }
-      // localStorage.clear();
-      // location.reload();
-    });
-    this.checkoutEvent.emit();
+    // this.deleteSwal.fire().then(res => {
+    //   if (!!resultCheckout && !!resultCheckout.success) {
+    //     localStorage.clear();
+    //     location.reload();
+    //   }
+    //   // localStorage.clear();
+    //   // location.reload();
+    // });
+    // this.checkoutEvent.emit();
   }
 
   cancel() {
@@ -129,10 +133,30 @@ export class CheckoutComponent implements OnInit {
   }
 
   getDistrict(value: any) {
-    this.province.districtsView = this.province.districts.filter(x => x.ProvinceId === value);
+    this.province.districtsView = this.province.districts.filter(x => x.ProvinceId.toString() === value.toString());
   }
 
   getWard(value: any) {
-    this.province.wardsView = this.province.wards.filter(x => x.DistrictId === value);
+    this.province.wardsView = this.province.wards.filter(x => x.DistrictId.toString() === value.toString());
+  }
+
+  nextStep() {
+    const check = this.pageContent.links.address.fields.filter(x => (!!x.required && !x.value));
+    if (!!check && check.length > 0) {
+      for (let i = 0; i < check.length; i++) {
+        check[i].showRequired = true;
+        setTimeout(() => {
+          check[i].showRequired = false;
+        }, 3000);
+      }
+      return;
+    }
+    this.screenConfirm = true;
+  }
+
+  goHome() {
+    localStorage.clear();
+    // this.router.navigate(['/']);
+    location.href = location.origin;
   }
 }
