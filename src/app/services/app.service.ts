@@ -13,7 +13,7 @@ export class AppService {
   }
 
   getRandomId() {
-    return Math.random().toString(36).substring(7);
+    return Math.random().toString(36).substring(32);
   }
 
   saveLocalData(dataName, data) {
