@@ -13,7 +13,18 @@ export class AppService {
   }
 
   getRandomId() {
-    return Math.random().toString(36).substring(32);
+    function randomString(len, charSet) {
+      charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+      // tslint:disable-next-line:no-shadowed-variable
+      let randomString = '';
+      for (let i = 0; i < len; i++) {
+        const randomPoz = Math.floor(Math.random() * charSet.length);
+        randomString += charSet.substring(randomPoz, randomPoz + 1);
+      }
+      return randomString;
+    }
+
+    return randomString(32, null);
   }
 
   saveLocalData(dataName, data) {
