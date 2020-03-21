@@ -31,9 +31,10 @@ export class CheckoutComponent implements OnInit {
   }
 
   async ngOnInit() {
-    this.province = await this.appService.getProvince().toPromise();
+    this.appService.getProvince().subscribe(res => {
+      this.province = res;
+    });
     this.getCheckoutInfo();
-    console.log(this.province);
   }
 
   async checkout() {
