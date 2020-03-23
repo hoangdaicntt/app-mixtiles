@@ -108,6 +108,7 @@ export class CheckoutComponent implements OnInit {
       const newWidth = imageFrameSize.fullCurrent * image.size.width / image.size.height;
       result.left = -(newWidth - imageFrameSize.fullCurrent) / 2;
       result.width = newWidth;
+      result.height = imageFrameSize.fullCurrent;
     }
     if (image.size.width < image.size.height) {
       const currentWidth = image.size.width * imageFrameSize.fullCurrent / image.size.height;
@@ -115,12 +116,13 @@ export class CheckoutComponent implements OnInit {
       const newHeight = imageFrameSize.fullCurrent * image.size.height / image.size.width;
       result.top = -(newHeight - imageFrameSize.fullCurrent) / 2;
       result.height = newHeight;
+      result.width = imageFrameSize.fullCurrent;
     }
     return {
-      height: result.height,
-      width: result.width,
-      left: result.left,
-      top: result.top,
+      height: parseInt(result.height, 10),
+      width: parseInt(result.width, 10),
+      left: parseInt(result.left, 10),
+      top: parseInt(result.top, 10),
       minZoom: 100,
       currentSize: imageFrameSize.fullCurrent
     };

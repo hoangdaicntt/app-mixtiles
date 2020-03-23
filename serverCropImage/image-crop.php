@@ -40,6 +40,6 @@ class ImageCrop
   }
 }
 
-$imageCrop = new ImageCrop("public/Cover-Facebook.jpg", "eyJoZWlnaHQiOjUyNSwid2lkdGgiOjE0MjAsImxlZnQiOi02OTAsInRvcCI6LTEzNSwiY3VycmVudFNpemUiOjI4NH0=");
+$imageCrop = new ImageCrop("public/input.png", "eyJoZWlnaHQiOjI4Mywid2lkdGgiOjUwNSwibGVmdCI6LTExMCwidG9wIjowLCJtaW5ab29tIjoxNzcuNzc3Nzc3Nzc3Nzc3NzcsImN1cnJlbnRTaXplIjoyODR9");
 $imageCrop->cropImage('public/aa.png', 1024);
 
