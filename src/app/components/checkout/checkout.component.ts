@@ -1,8 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {AppService} from '../../services/app.service';
-import {SwalComponent} from '@sweetalert2/ngx-sweetalert2';
-// @ts-ignore
-import {DismissReason} from 'sweetalert2';
 import {Router} from '@angular/router';
 
 
@@ -16,8 +13,6 @@ export class CheckoutComponent implements OnInit {
   @Input('imageFrame') imageFrame: any;
   @Input('dataInit') pageContent: any;
   @Output('checkoutEvent') checkoutEvent = new EventEmitter();
-  @ViewChild('okSwal') private deleteSwal: SwalComponent;
-  @ViewChild('confirmSwal') private confirmSwal: SwalComponent;
   checkOutInfo: any = {};
   province: any = {
     districts: [],
@@ -29,6 +24,8 @@ export class CheckoutComponent implements OnInit {
   processing = false;
   screenConfirm = false;
   resultOrder = false;
+  today = new Date();
+  orderSuccess = false;
 
   constructor(private appService: AppService, private router: Router) {
     this.screenConfirm = false;
@@ -51,6 +48,17 @@ export class CheckoutComponent implements OnInit {
   }
 
   async checkout() {
+    const check = this.pageContent.links.address.fields.filter(x => (!!x.required && !x.value));
+    if (!!check && check.length > 0) {
+      for (let i = 0; i < check.length; i++) {
+        check[i].showRequired = true;
+        setTimeout(() => {
+          check[i].showRequired = false;
+        }, 3000);
+      }
+      return;
+    }
+
     const addressData = this.pageContent.links.address.fields.map(x => {
       return {id: x.id, value: x.value};
     });
@@ -68,21 +76,16 @@ export class CheckoutComponent implements OnInit {
       clientTime: new Date().getTime()
     };
     const resultCheckout: any = await this.appService.checkout(checkoutData).toPromise();
-    // this.processing = false;
+    this.processing = false;
+    this.screenConfirm = true;
     this.resultOrder = true;
-
-    // this.deleteSwal.fire().then(res => {
-    //   if (!!resultCheckout && !!resultCheckout.success) {
-    //     localStorage.clear();
-    //     location.reload();
-    //   }
-    //   // localStorage.clear();
-    //   // location.reload();
-    // });
-    // this.checkoutEvent.emit();
   }
 
   cancel() {
+    if (this.resultOrder) {
+      this.goHome();
+      return false;
+    }
     this.checkoutEvent.emit(null);
   }
 
@@ -160,5 +163,9 @@ export class CheckoutComponent implements OnInit {
     localStorage.clear();
     // this.router.navigate(['/']);
     location.href = location.origin;
+  }
+
+  getPrice() {
+    return parseInt(this.checkOutInfo.price.replace(',', ''), 10) * this.images.length;
   }
 }

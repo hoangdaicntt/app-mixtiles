@@ -265,3 +265,67 @@ button.result-btn {
 .summary-item:last-child {
   font-weight: 500;
 }
+
+.ss-item-prod {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  padding: 6px 9px;
+  border-bottom: 1px solid #e2e2e2;
+  font-size: 15px;
+}
+
+.list-info-orders {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px;
+  background-color: whitesmoke;
+  border-radius: 3px;
+  border-style: dashed;
+  border-width: 1px;
+  border-color: #adadad;
+}
+
+.list-info-order-ite {
+  width: 50%;
+  padding: 12px 6px;
+  /* border-left: 1px solid lightgray; */
+  /* border-bottom: 1px solid lightgray; */
+}
+
+.list-info-order-ite > p {
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0;
+  color: #8a8a8a;
+}
+
+.list-info-order-ite > span {
+  font-size: 15px;
+  font-weight: 500;
+  display: block;
+}
+
+h3.result-title {
+  margin: 12px 0 3px 0;
+}
+
+.ss-item-other {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.ss-item-other:last-child {
+  font-weight: 500;
+}
+
+.fullname, .phoneNumber, .address {
+  margin: 6px 0;
+  font-weight: 400;
+}

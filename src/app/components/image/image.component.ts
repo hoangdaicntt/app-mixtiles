@@ -7,6 +7,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 })
 export class ImageComponent implements OnInit {
   @Input('image') image: any;
+  @Input('isMini') isMini = false;
   @Input('imageFrame') imageFrame: any;
   @Output('selectEvent') selectEvent = new EventEmitter();
 
@@ -17,6 +18,8 @@ export class ImageComponent implements OnInit {
     fullCurrent: 284,
     fullMin: 213,
     fullMax: 284,
+    mini: 46,
+    fullMini: 50,
   };
   positionImage = {
     top: 0,
@@ -35,7 +38,10 @@ export class ImageComponent implements OnInit {
   getImagePosition() {
     this.imageFrameSize.current = this.imageFrame.isPadding ? this.imageFrameSize.min : this.imageFrameSize.max;
     this.imageFrameSize.fullCurrent = !!this.image.editData ? this.image.editData.currentSize : this.imageFrameSize.fullCurrent;
-
+    if (this.isMini) {
+      this.imageFrameSize.current = this.imageFrameSize.mini;
+      // this.imageFrameSize.fullCurrent = this.imageFrameSize.fullMini;
+    }
     if (!this.image.editData) {
       return this.viewDefault();
     } else {

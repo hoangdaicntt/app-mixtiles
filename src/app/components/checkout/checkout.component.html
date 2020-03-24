@@ -58,10 +58,12 @@
     <p class="notify-freeship" *ngIf="!(images.length>3)">
       (*) Đơn hàng với 4 khung ảnh trở lên sẽ được freeship.
     </p>
-    <div  class="bottom-button-container">
-      <div [ngClass]="{'disable':images.length===0}" (click)="images.length>0?nextStep():null" class="bottom-button">
-        {{images.length > 0 ? 'Tiếp tục' : 'Vui lòng chọn một ảnh trước'}}
-      </div>
+    <div class="bottom-button-container">
+      <!--      <div  (click)="images.length>0?nextStep():null" class="bottom-button">-->
+      <!--        {{images.length > 0 ? 'Tiếp tục' : 'Vui lòng chọn một ảnh trước'}}-->
+      <!--      </div>-->
+      <div [ngClass]="{'disable':images.length===0}" (click)="!processing?(images.length>0?checkout():null):null;"
+           class="bottom-button">{{images.length > 0 ? (processing ? 'Đang xử lý...' : pageContent.checkoutText) : 'Vui lòng chọn một ảnh trước'}}</div>
     </div>
   </div>
 </div>
@@ -145,19 +147,105 @@
   </div>
 
   <div class="checkout-component-content" *ngIf="resultOrder">
-    <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-         class="result-img svg-inline--fa fa-check-circle fa-w-16 fa-5x">
-      <g class="fa-group">
-        <path fill="currentColor"
-              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm155.31 195.31l-184 184a16 16 0 0 1-22.62 0l-104-104a16 16 0 0 1 0-22.62l22.62-22.63a16 16 0 0 1 22.63 0L216 308.12l150.06-150.06a16 16 0 0 1 22.63 0l22.62 22.63a16 16 0 0 1 0 22.62z"
-              class="fa-secondary"></path>
-        <path fill="currentColor"
-              d="M227.31 387.31a16 16 0 0 1-22.62 0l-104-104a16 16 0 0 1 0-22.62l22.62-22.63a16 16 0 0 1 22.63 0L216 308.12l150.06-150.06a16 16 0 0 1 22.63 0l22.62 22.63a16 16 0 0 1 0 22.62l-184 184z"
-              class="fa-primary"></path>
-      </g>
-    </svg>
+    <img class="result-img"
+      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAAGjUlEQVR4nO2ba2wUVRTH/+fuM6XdFiqCsUAJSMubBuVDAQkPo2Vb2i1tlRBFTDQhAU00xkRFlrcxJiQSDVGQYH22sLvdbSFGhEaiwZA0FkpbrCU8PiDyhjbQbneOH7oNUGZ2Z2Zn1qr97bc595x7/mfunb1zZwYYZJBBBvkfQ8nqaEnNkhGSJKYQcQ4zjSEgg4HUaBIdDFwn4rPMdEoIqSlYHLyYjLxMK4DX6xUN0xoXMrGHieeDKVdjiBYGDhPge7xxxmGv1yuZkafhBSioKh9utYXXMLASQJZBYc8z8W5hkbaHikKXDYoJwMACuGvdQ9FtX0vErwAYYlTcfnQSsMMCbAp4AteNCJh4ARjk9nteIOIPADyceEqquEjAmyFPoDLRQAkVoGB/gUt0OT4joCLRRHQSYFv4pbrCumt6A+guQFGwaDJHLCEAY/XGMIjTzFRYV+pv0eOsqwCF/pJZAOoAPKTH3wSuCUkUBZf6ftbqqLkA7kBxPjH9ACBFq6/JdJIkFoWW+o5qcdJUgOiw/wnAME2pJY8rFuIna0pqmtU6qC5Aib8kowdowD8/52NCQPvtsG3mwYrqG2raC7WBI8AuDHDxAMDAOKe1Z6fa9qoK4PZ5VjBQqj+tJENcVujzLFfVNF4Dd617KIVtrUjeIscoLlqB3HgrxvgjoNu+FgNMvMvuwviM8fGajeghfjteo5gjwOPzZIaJzyB62zoQSLWlYuNsL7LSHsX6Xzah6crJWM07yRrJjnUDFXME9BC/hgEofnzGODgtTqzLfxdTMifHchnCPZbVsRooFsDr9QoGXtSZq+HcK74PlUVY6fV6FXUqGhqmNS4EMEpPskbjsruwZc7G+8T34bQ4kTdiRiz30cfyGuYpGRULwMQeTVmaRKotFevz38PY9GxZe017CJXNX8WMISShqEW5AMAClTmahtywv5ea9hB2nvg8bhwG5ivZZP8FFleVjxS28AW1iZqBUeKjsI1ppL/U/1d/g+wIIHv3FNWZmoDB4gGAui0R2SulfAEkkaMlupGkO1zYOlf+ggfoEg8AoIhFVpP8NUBIYzT3YADpDhc2zV6PbFe2rF2veAAAseyNnGwBWBIuPX2kWFPwat5quOza3V32+OJ3nditJy0AAAFpcsflp4CQNK/+Uqwp2JC/Dk+NWYj3527GUGeGat90hwub58Q/8wzWmta9qC+AVvrE5wybAAAYlZaFzbM3qiqCqcNeBUpToENtAIfFcZ/4PkalZWFD/jqkO5SngxrxiQz7ftySO6g0BW6qjdoV6cKJy02ytmxXNrbOkZ8OveI3mD3s78Ikq0l+CkjirJbYe5orsfd3n6xNbjrcFS//Z2PwmQcAMHBG7rh8AYhbtXagtghqxRt25vtQ0GSVOyiE1CRJgqFx2/yL5i9hs9hQPK7oAVvvNcELAIrig+215ogHOBK2ye6cKAosDBS36HimDwBYMel5lE3Qtodq2pnvpanWE5gqZ1C+G2Q6pLe3Pc2V2NsmPx3kMFk8QKyoRXkdQOxPpM89J9UVwXTxAEgSiokoFuCJ3/IOATifSMfxipAM8QDOzTw+/YiS0aJkqK+v58eW5WQQSHE7SQ2Nl47DbrFjUubE+44nSTwAbPt01Y56JWPMpbBdEh8BUL0qVKL/SEii+E6yRj6O1UBxBABA63ett3Oey80EkJ9oJn0joe36H8kSD2LaFiqpCcZsEy9Iwf4Cl7XL0crAIwknFO0uGeJB/OedbntuvKfEce8GDyw+cBPAW0bkxNFfMiCm19U8Ile90nP7S74mYFliaSUHBqrqPIFn1bRVvR/QFbatAnBad1bJo01ydL2strHqAhysqL6BiOUZAA9sLQ8gLlPEsiQ6bVWhaUeotmxfG0miGECn5tTMp0MiLgyV7dN0J6t5Syy01HeUJDEfwCWtviZylYmf3l9S86tWR90vSrp9nomCOMSA/AZ+8mgTQioKFgdP6XHWvSlaV+pvISHlgfhbvTEShslvBWbpFQ8Y9LZ4oc+zHEL6EEwjjYgXDwIuAHgj5Al8Y0AsY1hUVZ7utHe/A6ZVMO+tklvE9EmP884WLVf6WBj+wUT0vaI16P1gYrRBYc8B+Dwctm3/vqL6qkExAZj8ycyxvIZ5QhIeZloA4pjvsfSDwdQMIf1IkvDNPD79yL/mkxklCqrKh1utPVMZmADi0cw0rO8RHEuig4ivgukcWyKnpC5H04GK6oH0NzvIIIMM8t/kb2DcbeTQgsWPAAAAAElFTkSuQmCC">
     <h3 class="result-title">Đặt hàng thành công</h3>
-    <p class="result-des">Cảm ơn bạn đã đặt hàng, chúng tôi sẽ sớm liên hệ để xác nhận đơn hàng này.</p>
+    <p class="result-des">Cảm ơn bạn đã đặt hàng, đơn hàng của bạn đã được nhận.</p>
+    <div class="succes-box">
+      <div class="succes-box-body">
+        <div class="list-info-orders">
+          <div class="list-info-order-ite">
+            <p>Mã đơn hàng</p>
+            <span>{{checkOutInfo.orderCode}}</span>
+          </div>
+
+          <div class="list-info-order-ite">
+            <p>Ngày đơn hàng</p>
+            <span>{{today|date:'dd/MM/yyyy'}}</span>
+          </div>
+
+
+          <div class="list-info-order-ite">
+            <p>Tổng tiền</p>
+            <span>{{checkOutInfo.priceCheckout + ' ' + checkOutInfo.priceUnit}}</span>
+          </div>
+
+
+          <div class="list-info-order-ite">
+            <p>Hình thức thanh toán</p>
+            <span>Thanh toán khi nhận hàng</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="succes-box">
+      <h3 class="succes-box-title">Chi tiết đơn hàng</h3>
+      <div class="succes-box-body">
+        <ng-container *ngFor="let image of images;let i=index;">
+          <div class="ss-item-prod">
+            <span>{{i + 1}}</span>
+            <app-image [image]="image" [imageFrame]="imageFrame" [isMini]="true"></app-image>
+            <span>x1</span>
+            <span>{{checkOutInfo.price + ' ' + checkOutInfo.priceUnit}}</span>
+          </div>
+        </ng-container>
+        <div class="ss-item-other">
+          <span>Tổng số phụ</span>
+          <span>{{getPrice() |number:'1.0-0' }}{{' ' + checkOutInfo.priceUnit}}</span>
+        </div>
+        <div class="ss-item-other">
+          <span>Phí vận chuyển</span>
+          <span>{{checkOutInfo.shipPrice + ' ' + checkOutInfo.priceUnit}}</span>
+        </div>
+        <div class="ss-item-other">
+          <span>Tổng cộng</span>
+          <span>{{checkOutInfo.priceCheckout + ' ' + checkOutInfo.priceUnit}}</span>
+        </div>
+      </div>
+    </div>
+    <div class="succes-box">
+      <h3 class="succes-box-title">Địa chỉ thanh toán</h3>
+      <div class=" succes-box-body">
+        <ng-container *ngFor="let field of pageContent.links.address.fields">
+          <p *ngIf="field.id==='fullname'" class="{{field.id}}">
+            {{field.value}}
+          </p>
+        </ng-container>
+        <ng-container *ngFor="let field of pageContent.links.address.fields">
+          <p *ngIf="field.id==='phoneNumber'" class="{{field.id}}">
+            {{field.value}}
+          </p>
+        </ng-container>
+        <p class="address">
+          <ng-container *ngFor="let field of pageContent.links.address.fields">
+            <span *ngIf="field.id==='address'">{{field.value}}</span>
+          </ng-container>
+          <ng-container *ngFor="let field of pageContent.links.address.fields">
+            <span *ngIf="field.id==='ward'">
+              <ng-container *ngFor="let option of province.wardsView">
+              {{option.WardId === field.value ? option.WardName : ''}}
+              </ng-container>
+            </span>
+          </ng-container>
+          <ng-container *ngFor="let field of pageContent.links.address.fields">
+            <span *ngIf="field.id==='district'">
+              <ng-container *ngFor="let option of province.districtsView">
+                {{option.DistrictId === field.value ? option.DistrictName : ''}}
+            </ng-container>
+            </span>
+          </ng-container>
+          <ng-container *ngFor="let field of pageContent.links.address.fields">
+            <span *ngIf="field.id==='province'">
+              <ng-container *ngFor="let option of province.provinces">
+                {{option.ProvinceId === field.value ? option.ProvinceName : ''}}
+              </ng-container>
+            </span>
+          </ng-container>
+        </p>
+
+      </div>
+    </div>
+
     <button (click)="goHome();" class="result-btn">Về trang chủ</button>
   </div>
 </div>
@@ -174,13 +262,3 @@
     </div>
   </div>
 </app-popup>
-
-
-<swal
-  #okSwal
-  title="Thông báo thành công"
-  text="Đơn hàng của bạn đã được đặt thành công. Chúng tôi sẽ sớm liên hệ với bạn để xác nhận đơn hàng!!!"
-  icon="success"
-  [showCancelButton]="false"
-  [focusCancel]="true">
-</swal>

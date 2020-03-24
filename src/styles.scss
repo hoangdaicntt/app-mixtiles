@@ -202,3 +202,33 @@ input {
     margin-bottom: 6px;
   }
 }
+
+
+app-image {
+  position: relative;
+}
+
+.help-tooltip {
+  position: absolute;
+  background-color: #fbd157;
+  padding: 9px 0;
+  border-radius: 6px;
+  color: #ffffff;
+  width: 245px;
+  text-align: center;
+  font-size: 15px;
+  left: calc(100% - 266px);
+  font-weight: 400;
+  box-shadow: 0 0 3px #15151524;
+}
+
+.help-tooltip:after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;  /* At the top of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #fbd157 transparent;
+}

@@ -56,10 +56,11 @@ export class DesignComponent implements OnInit {
   }
 
   async upload(fileToUpload) {
-    const image = {
+    let image = {
       id: '',
       name: '',
       path: '',
+      help: false,
       size: {width: 0, height: 0}
     };
     this.images.push(image);
@@ -68,15 +69,27 @@ export class DesignComponent implements OnInit {
       image.id = result.id;
       image.path = result.path;
       image.size = result.size;
+
       // check size
       if (image.size.width < this.lowQualityMenuPopup.minWidth
         || image.size.height < this.lowQualityMenuPopup.minHeight) {
         this.lowQualityMenuPopup.image = image;
         this.lowQualityMenuPopup.show = true;
         this.selectedImage = image;
+      } else {
+        image = this.showHelp(image);
       }
       this.updateImagesToLocal();
     }
+  }
+
+  showHelp(image) {
+    image.help = true;
+    setTimeout(() => {
+      image.help = false;
+      this.updateImagesToLocal();
+    }, 3000);
+    return image;
   }
 
   editMenuAction(event: any) {
@@ -134,6 +147,7 @@ export class DesignComponent implements OnInit {
       }
       default: {
         this.lowQualityMenuPopup.show = false;
+        this.selectedImage = this.showHelp(this.selectedImage);
         break;
       }
     }
