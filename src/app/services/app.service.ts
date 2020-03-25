@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {map} from 'rxjs/operators';
@@ -427,8 +427,9 @@ export class AppService {
   }
 
   // Lấy thông tin thanh toán
-  getCheckoutInfo() {
-    return this.http.get(environment.host + '/getCheckout/' + environment.sessionId);
+  getCheckoutInfo(ids) {
+    const params = new HttpParams().set('ids', ids);
+    return this.http.get(environment.host + '/getCheckout/' + environment.sessionId,{params:params});
   }
 
   // Xác nhận thanh toán

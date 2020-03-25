@@ -132,7 +132,8 @@ export class CheckoutComponent implements OnInit {
   }
 
   getCheckoutInfo() {
-    this.appService.getCheckoutInfo().subscribe(result => {
+    const ids=this.images.map(x=>x.id);
+    this.appService.getCheckoutInfo(ids).subscribe(result => {
       this.checkOutInfo = result;
     });
   }
