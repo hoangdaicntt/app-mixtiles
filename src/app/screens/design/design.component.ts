@@ -88,7 +88,7 @@ export class DesignComponent implements OnInit {
     setTimeout(() => {
       image.help = false;
       this.updateImagesToLocal();
-    }, 3000);
+    }, 5000);
     return image;
   }
 
