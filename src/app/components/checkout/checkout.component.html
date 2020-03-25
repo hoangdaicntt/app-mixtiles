@@ -189,17 +189,9 @@
             <span>{{checkOutInfo.price + ' ' + checkOutInfo.priceUnit}}</span>
           </div>
         </ng-container>
-        <div class="ss-item-other">
-          <span>Tổng số phụ</span>
-          <span>{{getPrice() |number:'1.0-0' }}{{' ' + checkOutInfo.priceUnit}}</span>
-        </div>
-        <div class="ss-item-other">
-          <span>Phí vận chuyển</span>
-          <span>{{checkOutInfo.shipPrice + ' ' + checkOutInfo.priceUnit}}</span>
-        </div>
-        <div class="ss-item-other">
-          <span>Tổng cộng</span>
-          <span>{{checkOutInfo.priceCheckout + ' ' + checkOutInfo.priceUnit}}</span>
+        <div *ngFor="let item of checkOutInfo.data" class="ss-item-other">
+          <span>{{item.name}}</span>
+          <span>{{item.value}}</span>
         </div>
       </div>
     </div>
