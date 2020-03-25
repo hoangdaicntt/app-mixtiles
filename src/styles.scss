@@ -217,9 +217,11 @@ app-image {
   width: 245px;
   text-align: center;
   font-size: 15px;
-  left: calc(100% - 266px);
+  left: calc(100% - 270px);
   font-weight: 400;
   box-shadow: 0 0 3px #15151524;
+  bottom: 20px;
+  z-index: 9;
 }
 
 .help-tooltip:after {

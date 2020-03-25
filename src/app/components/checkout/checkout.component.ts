@@ -79,6 +79,7 @@ export class CheckoutComponent implements OnInit {
     this.processing = false;
     this.screenConfirm = true;
     this.resultOrder = true;
+    localStorage.clear();
   }
 
   cancel() {
