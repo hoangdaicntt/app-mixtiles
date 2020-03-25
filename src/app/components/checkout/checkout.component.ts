@@ -98,8 +98,8 @@ export class CheckoutComponent implements OnInit {
   private viewDefault(image) {
     const result: any = {
       zoom: 100,
-      width: image.size.width,
-      height: image.size.height,
+      width: 284,
+      height: 284,
       left: 0,
       top: 0
     };
@@ -132,7 +132,7 @@ export class CheckoutComponent implements OnInit {
   }
 
   getCheckoutInfo() {
-    const ids=this.images.map(x=>x.id);
+    const ids = this.images.map(x => x.id);
     this.appService.getCheckoutInfo(ids).subscribe(result => {
       this.checkOutInfo = result;
     });
