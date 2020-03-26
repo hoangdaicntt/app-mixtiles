@@ -40,6 +40,6 @@ class ImageCrop
   }
 }
 
-$imageCrop = new ImageCrop("public/input.png", "eyJoZWlnaHQiOjI4Mywid2lkdGgiOjUwNSwibGVmdCI6LTExMCwidG9wIjowLCJtaW5ab29tIjoxNzcuNzc3Nzc3Nzc3Nzc3NzcsImN1cnJlbnRTaXplIjoyODR9");
+$imageCrop = new ImageCrop("public/input.jpeg", "eyJoZWlnaHQiOjI4NCwid2lkdGgiOjI4NCwibGVmdCI6MCwidG9wIjowLCJtaW5ab29tIjoxMDAsImN1cnJlbnRTaXplIjoyODR9");
 $imageCrop->cropImage('public/aa.png', 1024);
 
