@@ -14,6 +14,31 @@ class ImageCrop
     $this->crop = $this->processCropData($cropData);
   }
 
+  function cropImageBG($image, $width, $height, $x = null, $y = null, $bg_color = null)
+  {
+    $image_width = $image->width();
+    $image_height = $image->height();
+    if ($image_width < $width + abs($x) or $x < 0   // Is the crop width outside the image
+      or $image_height < $height + abs($y) or $y < 0) {// Is the crop height outside the image
+      $canvas_width = abs($x) + $width;
+      $canvas_height = abs($y) + $height;
+      $background = Image::canvas($canvas_width, $canvas_height);
+      if ($bg_color) {
+        $background->fill($bg_color);
+      }
+      $ins_x = abs(($x - abs($x)) / 2);
+      $ins_y = abs(($y - abs($y)) / 2);
+      $x = abs(($x + abs($x)) / 2);
+      $y = abs(($y + abs($y)) / 2);
+      $background->insert($image, 'top-left', $ins_x, $ins_y);
+      $image = $background;
+      unset($background);
+    }
+
+
+    return $image->crop($width, $height, $x, $y);
+  }
+
   public function cropImage($pathSaveTo, $size = 500)
   {
     try {
@@ -25,9 +50,10 @@ class ImageCrop
       $zSize = floatval($sizeCurrent / $size);
       $zWidth = intval($width / $zSize);
       $zHeight = intval($height / $zSize);
-      $zTop = abs(intval($top / $zSize));
-      $zLeft = abs(intval($left / $zSize));
-      $this->image->resize($zWidth, $zHeight)->crop($size, $size, $zLeft, $zTop)->save($pathSaveTo);
+      $zTop = -(intval($top / $zSize));
+      $zLeft = -(intval($left / $zSize));
+      $this->image = $this->image->resize($zWidth, $zHeight);
+      $this->cropImageBG($this->image, $size, $size, $zLeft, $zTop, '#fff')->save($pathSaveTo);
       return true;
     } catch (Exception $exception) {
       return false;
@@ -40,6 +66,6 @@ class ImageCrop
   }
 }
 
-$imageCrop = new ImageCrop("public/input.jpeg", "eyJoZWlnaHQiOjI4NCwid2lkdGgiOjI4NCwibGVmdCI6MCwidG9wIjowLCJtaW5ab29tIjoxMDAsImN1cnJlbnRTaXplIjoyODR9");
+$imageCrop = new ImageCrop("public/input.jpg", "eyJoZWlnaHQiOjI4NCwid2lkdGgiOjIwOCwibGVmdCI6MzgsInRvcCI6MCwibWluWm9vbSI6MTM2LjMwNzY5MjMwNzY5MjMyLCJjdXJyZW50U2l6ZSI6Mjg0fQ==");
 $imageCrop->cropImage('public/aa.png', 1024);
 

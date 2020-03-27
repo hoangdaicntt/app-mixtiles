@@ -35,8 +35,8 @@ export class ZoomComponent implements OnInit, AfterViewInit {
       snapView: false,
       minZoom: this.minZoom,
       isSetPosition: true,
-      left: this.initZoom.left ? this.initZoom.left : 0,
-      top: this.initZoom.top ? this.initZoom.top : 0,
+      left: parseInt(this.initZoom.left ? this.initZoom.left : 0, 10),
+      top: parseInt(this.initZoom.top ? this.initZoom.top : 0, 10),
     });
     this.viewer.load(this.image.path);
   }

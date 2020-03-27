@@ -145,8 +145,8 @@ var ImageViewer =
 
           var tickZoom = (0, _util.easeOutQuart)(step, curPerc, perc - curPerc, 16);
           var ratio = tickZoom / curPerc;
-          var imgWidth = imageDim.w * tickZoom / 100;
-          var imgHeight = imageDim.h * tickZoom / 100;
+          var imgWidth = Math.round(imageDim.w * tickZoom / 100);
+          var imgHeight = Math.round(imageDim.h * tickZoom / 100);
           var newLeft = -((point.x - curLeft) * ratio - point.x);
           var newTop = -((point.y - curTop) * ratio - point.y); // fix for left and top
 
@@ -167,9 +167,9 @@ var ImageViewer =
             newLeft = _options.left;
             newTop = _options.top;
           }
-          if (newLeft > 0 || newTop > 0) {
-            return;
-          }
+          // if (newLeft > 0 || newTop > 0) {
+          //   return;
+          // }
 
           (0, _util.css)(image, {
             height: "".concat(imgHeight, "px"),
@@ -522,10 +522,55 @@ var ImageViewer =
             var maxTop = Math.max(snapImageDim.h - snapHandleDim.h, startHandleTop);
             var minLeft = Math.min(0, startHandleLeft);
             var minTop = Math.min(0, startHandleTop);
+
+
             var left = (0, _util.clamp)(startHandleLeft + position.dx, minLeft, maxLeft);
             var top = (0, _util.clamp)(startHandleTop + position.dy, minTop, maxTop);
+            if (imageCurrentDim.h < 284 || imageCurrentDim.w < 284) {
+              left = startHandleLeft + position.dx;
+              top = startHandleTop + position.dy;
+            }
             var imgLeft = -left * imageCurrentDim.w / snapImageDim.w;
             var imgTop = -top * imageCurrentDim.h / snapImageDim.h;
+
+
+            // console.log(imageCurrentDim.h, imgTop);
+            if (imageCurrentDim.h < 284) {
+              if (imgTop < 0) {
+                imgTop = 0;
+              } else {
+                if (imgTop + imageCurrentDim.h >= 284) {
+                  imgTop = 284 - imageCurrentDim.h;
+                }
+              }
+              if (imgLeft > 0) {
+                imgLeft = 0;
+              } else {
+                if (imageCurrentDim.w + imgLeft < 284) {
+                  imgLeft = 284 - imageCurrentDim.w;
+                }
+              }
+            }
+
+            if (imageCurrentDim.w < 284) {
+              if (imgLeft < 0) {
+                imgLeft = 0;
+              } else {
+                if (imgLeft + imageCurrentDim.w >= 284) {
+                  imgLeft = 284 - imageCurrentDim.w;
+                }
+              }
+              if (imgTop > 0) {
+                imgTop = 0;
+              } else {
+                if (imageCurrentDim.h + imgTop < 284) {
+                  imgTop = 284 - imageCurrentDim.h;
+                }
+              }
+            }
+            imgLeft = Math.round(imgLeft);
+            imgTop = Math.round(imgTop);
+
             (0, _util.css)(snapHandle, {
               left: "".concat(left, "px"),
               top: "".concat(top, "px")
@@ -694,9 +739,9 @@ var ImageViewer =
           } else {
             changedDelta = 0;
           }
-          if (newZoomValue <= _options.minZoom) {
-            newZoomValue = _options.minZoom;
-          }
+          // if (newZoomValue <= _options.minZoom) {
+          //   newZoomValue = _options.minZoom;
+          // }
 
           e.preventDefault();
           if (changedDelta > _util.MOUSE_WHEEL_COUNT) return;
@@ -885,8 +930,8 @@ var ImageViewer =
         var imgWidth;
         var imgHeight;
         var ratio = imageWidth / imageHeight;
-        imgWidth = imageWidth > imageHeight && contHeight >= contWidth || ratio * contHeight > contWidth ? contWidth : ratio * contHeight;
-        imgHeight = imgWidth / ratio;
+        imgWidth = parseInt(imageWidth > imageHeight && contHeight >= contWidth || ratio * contHeight > contWidth ? contWidth : ratio * contHeight, 10);
+        imgHeight = parseInt(imgWidth / ratio, 10);
         this._state.imageDim = {
           w: imgWidth,
           h: imgHeight
