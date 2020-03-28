@@ -246,6 +246,9 @@ button.result-btn {
   width: 70%;
   margin: 12px auto;
   cursor: pointer;
+  height: 45px;
+  box-sizing: border-box;
+  display: block;
 }
 
 .close-checkout {
