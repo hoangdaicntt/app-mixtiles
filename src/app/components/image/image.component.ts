@@ -51,10 +51,10 @@ export class ImageComponent implements OnInit {
 
   viewEdited() {
     const z = this.imageFrameSize.fullCurrent / this.imageFrameSize.current;
-    this.positionImage.height = this.image.editData.height / z;
-    this.positionImage.width = this.image.editData.width / z;
-    this.positionImage.top = this.image.editData.top / z;
-    this.positionImage.left = this.image.editData.left / z;
+    this.positionImage.height = Math.round(this.image.editData.height / z);
+    this.positionImage.width = Math.round(this.image.editData.width / z);
+    this.positionImage.top = Math.round(this.image.editData.top / z);
+    this.positionImage.left = Math.round(this.image.editData.left / z);
     return JSON.parse(JSON.stringify(this.positionImage));
   }
 
@@ -84,6 +84,10 @@ export class ImageComponent implements OnInit {
       this.positionImage.left = 0;
       this.positionImage.top = 0;
     }
+    this.positionImage.height = Math.round(this.positionImage.height);
+    this.positionImage.width = Math.round(this.positionImage.width);
+    this.positionImage.top = Math.round(this.positionImage.top);
+    this.positionImage.left = Math.round(this.positionImage.left);
 
     return JSON.parse(JSON.stringify(this.positionImage));
   }
