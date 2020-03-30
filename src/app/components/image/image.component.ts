@@ -12,9 +12,9 @@ export class ImageComponent implements OnInit {
   @Output('selectEvent') selectEvent = new EventEmitter();
 
   imageFrameSize = {
-    current: 236,
+    current: 237,
     min: 177,
-    max: 236,
+    max: 237,
     fullCurrent: 284,
     fullMin: 213,
     fullMax: 284,
