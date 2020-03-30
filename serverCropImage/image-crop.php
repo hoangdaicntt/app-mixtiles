@@ -60,6 +60,29 @@ class ImageCrop
     }
   }
 
+  public function cropImageWithBorder($pathSaveTo, $size = 500)
+  {
+    try {
+      $width = $this->crop->width;
+      $height = $this->crop->height;
+      $top = $this->crop->top;
+      $left = $this->crop->left;
+      $sizeCurrent = $this->crop->currentSize;
+      $zSize = floatval($sizeCurrent / $size);
+      $zWidth = intval($width / $zSize);
+      $zHeight = intval($height / $zSize);
+      $zTop = -(intval($top / $zSize));
+      $zLeft = -(intval($left / $zSize));
+      $this->image = $this->image->resize($zWidth, $zHeight);
+      $this->cropImageBG($this->image, $size, $size, $zLeft, $zTop, '#fff')
+        ->resizeCanvas(2, 2, 'center', true, '#FF5722')
+        ->save($pathSaveTo);
+      return true;
+    } catch (Exception $exception) {
+      return false;
+    }
+  }
+
   private function processCropData($cropData)
   {
     return json_decode(base64_decode($cropData));
