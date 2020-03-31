@@ -568,8 +568,8 @@ var ImageViewer =
                 }
               }
             }
-            imgLeft = Math.round(imgLeft);
-            imgTop = Math.round(imgTop);
+            // imgLeft = Math.round(imgLeft);
+            // imgTop = Math.round(imgTop);
 
             (0, _util.css)(snapHandle, {
               left: "".concat(left, "px"),

@@ -35,8 +35,8 @@ export class ZoomComponent implements OnInit, AfterViewInit {
       snapView: false,
       minZoom: this.minZoom,
       isSetPosition: true,
-      left: Math.round(this.initZoom.left ? this.initZoom.left : 0),
-      top: Math.round(this.initZoom.top ? this.initZoom.top : 0),
+      left: this.initZoom.left ? this.initZoom.left : 0,
+      top: this.initZoom.top ? this.initZoom.top : 0,
     });
     this.viewer.load(this.image.path);
   }
@@ -69,6 +69,10 @@ export class ZoomComponent implements OnInit, AfterViewInit {
   private viewDefault() {
     const result: any = {
       zoom: 100,
+      top: 0,
+      left: 0,
+      width: this.imageFrameSize.fullCurrent,
+      height: this.imageFrameSize.fullCurrent,
     };
     // default fill
     if (this.image.size.width > this.image.size.height) {
