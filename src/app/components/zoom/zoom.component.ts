@@ -59,6 +59,7 @@ export class ZoomComponent implements OnInit, AfterViewInit {
       minZoom: this.minZoom,
       currentSize: this.imageFrameSize.fullCurrent
     };
+    console.log(dataEdit);
     this.acceptEvent.emit(dataEdit);
   }
 
@@ -79,15 +80,18 @@ export class ZoomComponent implements OnInit, AfterViewInit {
       const currentHeight = this.image.size.height * this.imageFrameSize.fullCurrent / this.image.size.width;
       result.zoom = this.imageFrameSize.fullCurrent / currentHeight * 100;
       const newWidth = this.imageFrameSize.fullCurrent * this.image.size.width / this.image.size.height;
+      result.width = newWidth;
       result.left = -(newWidth - this.imageFrameSize.fullCurrent) / 2;
     }
     if (this.image.size.width < this.image.size.height) {
       const currentWidth = this.image.size.width * this.imageFrameSize.fullCurrent / this.image.size.height;
       result.zoom = this.imageFrameSize.fullCurrent / currentWidth * 100;
       const newHeight = this.imageFrameSize.fullCurrent * this.image.size.height / this.image.size.width;
+      result.height = newHeight;
       result.top = -(newHeight - this.imageFrameSize.fullCurrent) / 2;
     }
     this.minZoom = result.zoom;
+    console.log(result);
     return result;
   }
 
