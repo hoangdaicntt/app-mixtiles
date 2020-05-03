@@ -1,0 +1,8 @@
+- DUDE  what-
+- Heard some rumbling in the office, went to go say hi
+- I love it when a plan comes together   
+- My Best TK, yet 
+- Not even 2 alt tabs can stop me (I couldn'\''t look left or mouse would move to the other monitor and alt tab me)
+- Pepega v Pepega
+- Remember, no hackers
+- When Scavs fight Scavs, the PMCs win

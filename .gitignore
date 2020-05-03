@@ -46,7 +46,3 @@ testem.log
 Thumbs.db
 /serverCropImage/vendor
 /serverCropImage/public
-/src/app/modules/iv-viewer/MIT-LICENSE.txt
-/src/app/modules/iv-viewer/package.json
-/src/app/modules/iv-viewer/README.md
-/src/app/modules/iv-viewer/yarn.lock
