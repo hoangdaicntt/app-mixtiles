@@ -18,10 +18,10 @@ export class ZoomComponent implements OnInit, AfterViewInit {
   minZoom;
   imageFrameSize = {
     current: 236,
-    min: 177,
+    min: 188,
     max: 236,
     fullCurrent: 284,
-    fullMin: 213,
+    fullMin: 223,
     fullMax: 284,
   };
   initZoom: any;

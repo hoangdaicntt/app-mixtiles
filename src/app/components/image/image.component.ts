@@ -13,10 +13,10 @@ export class ImageComponent implements OnInit {
 
   imageFrameSize = {
     current: 237,
-    min: 177,
+    min: 188,
     max: 237,
     fullCurrent: 284,
-    fullMin: 213,
+    fullMin: 223,
     fullMax: 284,
     mini: 46,
     fullMini: 50,
