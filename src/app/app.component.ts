@@ -18,6 +18,8 @@ export class AppComponent implements OnInit {
 
   constructor(private appService: AppService) {
     localStorage.removeItem('init-data');
+    environment.language = localStorage.getItem('lang') ? localStorage.getItem('lang') : environment.language;
+    this.formData.languageCode = environment.language;
   }
 
 

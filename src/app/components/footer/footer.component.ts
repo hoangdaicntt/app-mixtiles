@@ -24,6 +24,9 @@ export class FooterComponent implements OnInit {
 
   selectLanguage(lang: any) {
     environment.language = lang.code;
+    this.currentLanguage = lang.code;
+    localStorage.setItem('lang', lang.code);
+    location.reload();
     this.languagePopupShow = false;
   }
 }
