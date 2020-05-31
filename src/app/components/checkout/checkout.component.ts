@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {AppService} from '../../services/app.service';
 import {Router} from '@angular/router';
+import {environment} from '../../../environments/environment';
 
 
 @Component({
@@ -26,6 +27,43 @@ export class CheckoutComponent implements OnInit {
   resultOrder = false;
   today = new Date();
   orderSuccess = false;
+  initCheckOut = environment.language === 'vn' ? {
+    subTitle: 'Thông tin giao hàng',
+    require: 'Trường này là bắt buộc nhập',
+    freeShip: '(*) Đơn hàng với 4 khung ảnh trở lên sẽ được freeship.',
+    process: 'Đang xử lý...',
+    plsChoose: 'Vui lòng chọn một ảnh trước',
+    acceptOrder: 'Xác nhận đơn hàng',
+    addressShip: 'Địa chỉ giao hàng',
+    orderSuccess: 'Đặt hàng thành công',
+    thanks: 'Cảm ơn bạn đã đặt hàng, đơn hàng của bạn đã được nhận.',
+    orderCode: 'Mã đơn hàng',
+    orderDate: 'Ngày đơn hàng',
+    totalMoney: 'Tổng tiền',
+    paymentMethod: 'Hình thức thanh toán',
+    paymentMethodInfo: 'Thanh toán khi nhận hàng',
+    orderDetail: 'Thanh toán khi nhận hàng',
+    addressRec: 'Địa chỉ nhận hàng',
+    goHome: 'Về trang chủ'
+  } : {
+    subTitle: 'Shipping information',
+    require: 'This field is required',
+    freeShip: '(*) Orders with 4 or more frames will be freeship.',
+    process: 'Processing ...',
+    plsChoose: 'Please select an image first',
+    acceptOrder: 'Confirm order',
+    addressShip: 'Shipping address',
+    orderSuccess: 'Order successful',
+    thanks: 'Thank you for your order, your order has been received.',
+    orderCode: 'Order code',
+    orderDate: 'Order date',
+    totalMoney: 'Total money',
+    paymentMethod: 'Payment method',
+    paymentMethodInfo: 'Payment on delivery',
+    orderDetail: 'Pay on delivery',
+    addressRec: 'Shipping Address',
+    goHome: 'Back to the home page'
+  };
 
   constructor(private appService: AppService, private router: Router) {
     this.screenConfirm = false;
@@ -162,7 +200,9 @@ export class CheckoutComponent implements OnInit {
   }
 
   goHome() {
+    const lang = localStorage.getItem('lang');
     localStorage.clear();
+    localStorage.setItem('lang', lang);
     // this.router.navigate(['/']);
     location.href = location.origin;
   }

@@ -11,7 +11,7 @@
     <h3 class="checkout-title">{{pageContent.title}}</h3>
     <ul class="list-link">
       <li class="link-item">
-        <span class="link-text">Thông tin giao hàng</span>
+        <span class="link-text">{{initCheckOut.subTitle}}</span>
       </li>
       <!--      <li class="link-item">-->
       <!--        <img class="link-icon" [src]="pageContent.iconPayment">-->
@@ -39,7 +39,7 @@
         <select *ngIf="field.type==='select' && field.id==='ward'" class="form-item-input" [(ngModel)]="field.value">
           <option *ngFor="let option of province.wardsView" [value]="option.WardId">{{option.WardName}}</option>
         </select>
-        <span class="required">Trường này là bắt buộc nhập</span>
+        <span class="required">{{initCheckOut.require}}</span>
       </div>
     </div>
     <ul class="list-link">
@@ -56,14 +56,14 @@
       </div>
     </div>
     <p class="notify-freeship" *ngIf="!(images.length>3)">
-      (*) Đơn hàng với 4 khung ảnh trở lên sẽ được freeship.
+      {{initCheckOut.freeShip}}
     </p>
     <div class="bottom-button-container">
       <!--      <div  (click)="images.length>0?nextStep():null" class="bottom-button">-->
       <!--        {{images.length > 0 ? 'Tiếp tục' : 'Vui lòng chọn một ảnh trước'}}-->
       <!--      </div>-->
       <div [ngClass]="{'disable':images.length===0}" (click)="!processing?(images.length>0?checkout():null):null;"
-           class="bottom-button">{{images.length > 0 ? (processing ? 'Đang xử lý...' : pageContent.checkoutText) : 'Vui lòng chọn một ảnh trước'}}</div>
+           class="bottom-button">{{images.length > 0 ? (processing ? initCheckOut.process : pageContent.checkoutText) : initCheckOut.plsChoose}}</div>
     </div>
   </div>
 </div>
@@ -87,11 +87,11 @@
                 class=""></path>
         </svg>
       </button>
-      Xác nhận đơn hàng
+      {{initCheckOut.acceptOrder}}
     </h3>
     <ul class="list-link">
       <li class="link-item">
-        <span class="link-text">Địa chỉ giao hàng</span>
+        <span class="link-text">{{initCheckOut.addressShip}}</span>
       </li>
     </ul>
     <div class="forms-address popup-body">
@@ -138,48 +138,48 @@
       </div>
     </div>
     <p class="notify-freeship" *ngIf="!(images.length>3)">
-      (*) Đơn hàng với 4 khung ảnh trở lên sẽ được freeship.
+      {{initCheckOut.freeShip}}
     </p>
     <div class="bottom-button-container">
       <div (click)="!processing?checkout():null;"
-           class="bottom-button">{{processing ? 'Đang xử lý...' : pageContent.checkoutText}}</div>
+           class="bottom-button">{{processing ? initCheckOut.process : pageContent.checkoutText}}</div>
     </div>
   </div>
 
   <div class="checkout-component-content" style="display: block;" *ngIf="resultOrder">
     <img class="result-img"
-      src="data:image/png;base64,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">
-    <h3 class="result-title">Đặt hàng thành công</h3>
-    <p class="result-des">Cảm ơn bạn đã đặt hàng, đơn hàng của bạn đã được nhận.</p>
+         src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAAGjUlEQVR4nO2ba2wUVRTH/+fuM6XdFiqCsUAJSMubBuVDAQkPo2Vb2i1tlRBFTDQhAU00xkRFlrcxJiQSDVGQYH22sLvdbSFGhEaiwZA0FkpbrCU8PiDyhjbQbneOH7oNUGZ2Z2Zn1qr97bc595x7/mfunb1zZwYYZJBBBvkfQ8nqaEnNkhGSJKYQcQ4zjSEgg4HUaBIdDFwn4rPMdEoIqSlYHLyYjLxMK4DX6xUN0xoXMrGHieeDKVdjiBYGDhPge7xxxmGv1yuZkafhBSioKh9utYXXMLASQJZBYc8z8W5hkbaHikKXDYoJwMACuGvdQ9FtX0vErwAYYlTcfnQSsMMCbAp4AteNCJh4ARjk9nteIOIPADyceEqquEjAmyFPoDLRQAkVoGB/gUt0OT4joCLRRHQSYFv4pbrCumt6A+guQFGwaDJHLCEAY/XGMIjTzFRYV+pv0eOsqwCF/pJZAOoAPKTH3wSuCUkUBZf6ftbqqLkA7kBxPjH9ACBFq6/JdJIkFoWW+o5qcdJUgOiw/wnAME2pJY8rFuIna0pqmtU6qC5Aib8kowdowD8/52NCQPvtsG3mwYrqG2raC7WBI8AuDHDxAMDAOKe1Z6fa9qoK4PZ5VjBQqj+tJENcVujzLFfVNF4Dd617KIVtrUjeIscoLlqB3HgrxvgjoNu+FgNMvMvuwviM8fGajeghfjteo5gjwOPzZIaJzyB62zoQSLWlYuNsL7LSHsX6Xzah6crJWM07yRrJjnUDFXME9BC/hgEofnzGODgtTqzLfxdTMifHchnCPZbVsRooFsDr9QoGXtSZq+HcK74PlUVY6fV6FXUqGhqmNS4EMEpPskbjsruwZc7G+8T34bQ4kTdiRiz30cfyGuYpGRULwMQeTVmaRKotFevz38PY9GxZe017CJXNX8WMISShqEW5AMAClTmahtywv5ea9hB2nvg8bhwG5ivZZP8FFleVjxS28AW1iZqBUeKjsI1ppL/U/1d/g+wIIHv3FNWZmoDB4gGAui0R2SulfAEkkaMlupGkO1zYOlf+ggfoEg8AoIhFVpP8NUBIYzT3YADpDhc2zV6PbFe2rF2veAAAseyNnGwBWBIuPX2kWFPwat5quOza3V32+OJ3nditJy0AAAFpcsflp4CQNK/+Uqwp2JC/Dk+NWYj3527GUGeGat90hwub58Q/8wzWmta9qC+AVvrE5wybAAAYlZaFzbM3qiqCqcNeBUpToENtAIfFcZ/4PkalZWFD/jqkO5SngxrxiQz7ftySO6g0BW6qjdoV6cKJy02ytmxXNrbOkZ8OveI3mD3s78Ikq0l+CkjirJbYe5orsfd3n6xNbjrcFS//Z2PwmQcAMHBG7rh8AYhbtXagtghqxRt25vtQ0GSVOyiE1CRJgqFx2/yL5i9hs9hQPK7oAVvvNcELAIrig+215ogHOBK2ye6cKAosDBS36HimDwBYMel5lE3Qtodq2pnvpanWE5gqZ1C+G2Q6pLe3Pc2V2NsmPx3kMFk8QKyoRXkdQOxPpM89J9UVwXTxAEgSiokoFuCJ3/IOATifSMfxipAM8QDOzTw+/YiS0aJkqK+v58eW5WQQSHE7SQ2Nl47DbrFjUubE+44nSTwAbPt01Y56JWPMpbBdEh8BUL0qVKL/SEii+E6yRj6O1UBxBABA63ett3Oey80EkJ9oJn0joe36H8kSD2LaFiqpCcZsEy9Iwf4Cl7XL0crAIwknFO0uGeJB/OedbntuvKfEce8GDyw+cBPAW0bkxNFfMiCm19U8Ile90nP7S74mYFliaSUHBqrqPIFn1bRVvR/QFbatAnBad1bJo01ydL2strHqAhysqL6BiOUZAA9sLQ8gLlPEsiQ6bVWhaUeotmxfG0miGECn5tTMp0MiLgyV7dN0J6t5Syy01HeUJDEfwCWtviZylYmf3l9S86tWR90vSrp9nomCOMSA/AZ+8mgTQioKFgdP6XHWvSlaV+pvISHlgfhbvTEShslvBWbpFQ8Y9LZ4oc+zHEL6EEwjjYgXDwIuAHgj5Al8Y0AsY1hUVZ7utHe/A6ZVMO+tklvE9EmP884WLVf6WBj+wUT0vaI16P1gYrRBYc8B+Dwctm3/vqL6qkExAZj8ycyxvIZ5QhIeZloA4pjvsfSDwdQMIf1IkvDNPD79yL/mkxklCqrKh1utPVMZmADi0cw0rO8RHEuig4ivgukcWyKnpC5H04GK6oH0NzvIIIMM8t/kb2DcbeTQgsWPAAAAAElFTkSuQmCC">
+    <h3 class="result-title">{{initCheckOut.orderSuccess}}</h3>
+    <p class="result-des">{{initCheckOut.thanks}}</p>
     <div class="succes-box">
       <div class="succes-box-body">
         <div class="list-info-orders">
           <div class="list-info-order-ite">
-            <p>Mã đơn hàng</p>
+            <p>{{initCheckOut.orderCode}}</p>
             <span>{{checkOutInfo.orderCode}}</span>
           </div>
 
           <div class="list-info-order-ite">
-            <p>Ngày đơn hàng</p>
+            <p>{{initCheckOut.orderDate}}</p>
             <span>{{today|date:'dd/MM/yyyy'}}</span>
           </div>
 
 
           <div class="list-info-order-ite">
-            <p>Tổng tiền</p>
+            <p>{{initCheckOut.totalMoney}}</p>
             <span>{{checkOutInfo.priceCheckout + ' ' + checkOutInfo.priceUnit}}</span>
           </div>
 
 
           <div class="list-info-order-ite">
-            <p>Hình thức thanh toán</p>
-            <span>Thanh toán khi nhận hàng</span>
+            <p>{{initCheckOut.paymentMethod}}</p>
+            <span>{{initCheckOut.paymentMethodInfo}}</span>
           </div>
         </div>
       </div>
     </div>
     <div class="succes-box">
-      <h3 class="succes-box-title">Chi tiết đơn hàng</h3>
+      <h3 class="succes-box-title">{{initCheckOut.orderDetail}}</h3>
       <div class="succes-box-body">
         <ng-container *ngFor="let image of images;let i=index;">
           <div class="ss-item-prod">
@@ -196,7 +196,7 @@
       </div>
     </div>
     <div class="succes-box">
-      <h3 class="succes-box-title">Địa chỉ nhận hàng</h3>
+      <h3 class="succes-box-title">{{initCheckOut.addressRec}}</h3>
       <div class=" succes-box-body">
         <ng-container *ngFor="let field of pageContent.links.address.fields">
           <p *ngIf="field.id==='fullname'" class="{{field.id}}">
@@ -238,7 +238,7 @@
       </div>
     </div>
 
-    <button (click)="goHome();" class="result-btn">Về trang chủ</button>
+    <button (click)="goHome();" class="result-btn">{{initCheckOut.goHome}}</button>
     <div style="height: 48px;width: 100%;"></div>
   </div>
 </div>

@@ -429,7 +429,12 @@ export class AppService {
   // Lấy thông tin thanh toán
   getCheckoutInfo(ids) {
     const params = new HttpParams().set('ids', ids);
-    return this.http.get(environment.host + '/getCheckout/' + environment.sessionId,{params:params});
+    return this.http.get(environment.host + '/getCheckout/' + environment.sessionId, {
+      params: params,
+      headers: {
+        langCode: environment.language
+      }
+    });
   }
 
   // Xác nhận thanh toán
