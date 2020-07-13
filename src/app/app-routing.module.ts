@@ -7,6 +7,7 @@ import {GiftComponent} from './screens/gift/gift.component';
 import {NewsListComponent} from './screens/news/news-list/news-list.component';
 import {NewsDetailComponent} from './screens/news/news-detail/news-detail.component';
 import {PageComponent} from './screens/page/page.component';
+import {ShareComponent} from './components/share/share.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'news', component: NewsListComponent},
   {path: 'news-detail/:slug', component: NewsDetailComponent},
   {path: 'page/:slug', component: PageComponent},
+  {path: 'r/:slug', component: ShareComponent}, // tạo ảnh từ thư viện cũ
 ];
 
 @NgModule({

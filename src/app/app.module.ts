@@ -20,6 +20,7 @@ import {NewsListComponent} from './screens/news/news-list/news-list.component';
 import {NewsDetailComponent} from './screens/news/news-detail/news-detail.component';
 import {PageComponent} from './screens/page/page.component';
 import {FooterComponent} from './components/footer/footer.component';
+import { ShareComponent } from './components/share/share.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {FooterComponent} from './components/footer/footer.component';
     NewsListComponent,
     NewsDetailComponent,
     PageComponent,
-    FooterComponent
+    FooterComponent,
+    ShareComponent
   ],
   imports: [
     BrowserModule,

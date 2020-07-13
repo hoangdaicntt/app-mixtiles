@@ -457,4 +457,8 @@ export class AppService {
   getProvince() {
     return this.http.get(environment.host + '/province');
   }
+
+  getShare(id: string) {
+    return this.http.get(environment.host + '/imageTemplate/' + id);
+  }
 }
