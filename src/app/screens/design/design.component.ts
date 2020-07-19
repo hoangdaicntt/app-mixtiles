@@ -170,6 +170,16 @@ export class DesignComponent implements OnInit {
     if (!this.styleCodeSelected && !!this.pageContent) {
       this.styleCodeSelected = this.pageContent.styles[0].code;
     }
+    if (this.images.length > 0) {
+      setTimeout(() => {
+        if (this.images && this.images.length > 0) {
+          this.images = this.images.map(x => {
+            x.help = false;
+            return x;
+          });
+        }
+      }, 5000);
+    }
   }
 
   selectCode() {
